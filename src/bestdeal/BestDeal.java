@@ -9,7 +9,7 @@ package bestdeal;
  * @author Wajdi
  */
 public class BestDeal {
-
+String a;
     /**
      * @param args the command line arguments
      */
