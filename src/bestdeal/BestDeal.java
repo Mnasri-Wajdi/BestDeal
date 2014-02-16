@@ -10,6 +10,7 @@ package bestdeal;
  */
 public class BestDeal {
 String a;
+String b;
     /**
      * @param args the command line arguments
      */
