@@ -11,6 +11,8 @@ package bestdeal;
 public class BestDeal {
 String a;
 String b;
+String c;
+
     /**
      * @param args the command line arguments
      */
