@@ -12,6 +12,7 @@ public class DealDAO {
 String a;
 String wajdi;
 String marwen;
+String agfg;
     /**
      * @param args the command line arguments
      */
