@@ -13,7 +13,8 @@ String a;
 String wajdi;
 String marwen;
 String agfg;
-    /**
+int aaaa;
+/**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
