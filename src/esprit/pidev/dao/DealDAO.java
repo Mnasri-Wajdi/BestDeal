@@ -11,7 +11,7 @@ package esprit.pidev.dao;
 public class DealDAO {
 String a;
 String wajdi;
-
+String marwen;
     /**
      * @param args the command line arguments
      */
