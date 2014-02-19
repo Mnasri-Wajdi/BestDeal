@@ -4,6 +4,9 @@
  */
 package esprit.pidev.gui;
 
+import esprit.pidev.dao.CommercantDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marwen
@@ -31,11 +34,21 @@ public class SupprimerCommercant extends javax.swing.JFrame {
         btn_supprimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTable1.setModel(new CommercantDeleteModel());
         jScrollPane1.setViewportView(jTable1);
 
         btn_supprimer.setText("Supprimer");
+        btn_supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_supprimerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,6 +75,20 @@ public class SupprimerCommercant extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_supprimerActionPerformed
+
+        // TODO add your handling code here:
+        CommercantDAO cdao = new CommercantDAO();
+        cdao.deleteCommercant((int) jTable1.getValueAt(jTable1.getSelectedRow(),0));
+        jTable1.setModel(new CommercantDeleteModel());
+        
+         JOptionPane.showMessageDialog(this, "Supression effectué avec succès");
+        
+    }//GEN-LAST:event_btn_supprimerActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -94,6 +121,7 @@ public class SupprimerCommercant extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SupprimerCommercant().setVisible(true);
+                
             }
         });
     }

@@ -40,7 +40,28 @@ public class CommercantDAO {
     
     }
         
-        public List<Commercant> DisplayAllCommercants (){
+public void updateCommercant(Commercant c){
+        String requete = "update commercant set nom_commercant=?, description=?, adresse=?,email=?,telephone=?,login=?,password=? where id_commercant=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, c.getNom_commercant());
+            ps.setString(2, c.getDescription());
+            ps.setString(3, c.getAdresse());
+            ps.setString(4,c.getEmail());
+            ps.setInt(5, c.getTel());
+            ps.setString(6, c.getLogin());
+            ps.setString(7, c.getPassword());
+            ps.setInt(8, c.getId_commercant());
+            ps.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+
+    }
+    
+    public List<Commercant> DisplayAllCommercants (){
 
             
             
@@ -61,6 +82,8 @@ public class CommercantDAO {
                 commercant.setAdresse(resultat.getString(4));
                 commercant.setEmail(resultat.getString(5));
                 commercant.setTel(resultat.getInt(6));
+                commercant.setLogin(resultat.getString(7));
+                commercant.setPassword(resultat.getString(8));
                 listeCommercant.add(commercant);
             }
             return listeCommercant;

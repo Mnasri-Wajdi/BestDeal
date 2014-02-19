@@ -17,6 +17,15 @@ public class Commercant {
    private String email;
    private String login;
    private String password;
+   private double note;
+
+    public double getNote() {
+        return note;
+    }
+
+    public void setNote(double note) {
+        this.note = note;
+    }
    
 
 

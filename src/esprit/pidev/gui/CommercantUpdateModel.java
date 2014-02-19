@@ -11,11 +11,11 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Marwen
  */
-public class CommercantDeleteModel extends AbstractTableModel{
+public class CommercantUpdateModel extends AbstractTableModel{
      List<Commercant> listCommercant = new ArrayList<Commercant>();
     String []header = {"id_Commercant","nom commercant","description","adresse","email","telephone","login","password"};
-
-    public CommercantDeleteModel() { 
+  
+    public CommercantUpdateModel() { 
         listCommercant=new CommercantDAO().DisplayAllCommercants();
     }
     
@@ -48,6 +48,47 @@ public class CommercantDeleteModel extends AbstractTableModel{
                 return null;
         }
     }
+public boolean isCellEditable(int row, int col) { 
+    return true; 
+}
+
+@Override
+public void setValueAt(Object value, int row, int col)
+{
+    Commercant commercant = listCommercant.get(row);
+    CommercantDAO cdao= new CommercantDAO();
+    if (col==1)
+    {commercant.setNom_commercant((String)value);
+      cdao.updateCommercant(commercant);
+    }
+    else if (col==2) {
+        commercant.setDescription((String)value);
+         cdao.updateCommercant(commercant);
+    }
+     else if (col==3) {
+        commercant.setAdresse((String)value);
+         cdao.updateCommercant(commercant);
+    }
+     else if (col==4) {
+        commercant.setEmail((String)value);
+         cdao.updateCommercant(commercant);
+    }
+     else if (col==5) {
+        commercant.setTel(Integer.parseInt((String)value));
+         cdao.updateCommercant(commercant);
+    }
+     else if (col==6) {
+        commercant.setLogin((String)value);
+         cdao.updateCommercant(commercant);
+    }
+     else if (col==7) {
+        commercant.setPassword((String)value);
+         cdao.updateCommercant(commercant);
+    }
+    fireTableCellUpdated(row,col);
+}
+
+
     @Override
     public String getColumnName(int column) { 
         return header[column]; 
