@@ -6,6 +6,8 @@ package esprit.pidev.dao;
 
 import esprit.pidev.entities.Deal;
 import esprit.pidev.entities.Commercant;
+import esprit.pidev.entities.Notification;
+import esprit.pidev.entities.Reclamation;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -178,6 +180,129 @@ public class DealDAO {
             System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
             return null;
         }}
+    
+    
+    
+    //Mnasri wajdi
+    
+    public void insertProbleme(Reclamation r){
+
+        String requete = "insert into reclamation (message,id_client) values (?,?)";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, r.getMessage());
+            ps.setString(2, Integer.toString(r.getId_client()));
+            ps.executeUpdate();
+            
+            System.out.println("Ajout effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+            System.out.println("erreur lors de l'insertion "+ex.getMessage());
+        }
+    }
+    
+    
+    public void updateNoteCommercant(Commercant c){
+    
+    
+        String requete = "update commercant set note_commercant=? WHERE id_commercant=?" ;
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setDouble(1,c.getNote());
+            ps.setInt(2, c.getId_commercant());
+            ps.executeUpdate();
+            System.out.println("Mise à jour du note effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+
+    }
+    
+    
+    public List<Commercant> allcommercant (){
+
+
+        List<Commercant> listecommercant = new ArrayList<Commercant>();
+
+        String requete = "select * from Commercant";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                Commercant commercant =new Commercant();
+                commercant.setId_commercant(resultat.getInt(1));
+                commercant.setNom_commercant(resultat.getString(2));
+                commercant.setDescription(resultat.getString(3));
+                commercant.setAdresse(resultat.getString(4));
+                commercant.setEmail(resultat.getString(5));
+                commercant.setTel(resultat.getInt(6));
+                commercant.setLogin(resultat.getString(7));
+                commercant.setPassword(resultat.getString(8));
+                commercant.setNote(resultat.getInt(9));
+                
+
+                listecommercant.add(commercant);
+            }
+            return listecommercant;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des commercant"+ex.getMessage());
+            return null;
+        }
+    }
+    
+    public List<Notification> DisplayAllNot(int id) {
+        
+       List<Notification> listeNot = new ArrayList<Notification>();
+       System.out.println(id);
+        String requete = "select id_notification,type_notification from notification where vu=0 and id_client="+id;//tf_idClient=id_client
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                Notification notification =new Notification();
+                
+                notification.setId_notification(resultat.getInt(1));
+                notification.setType_notification(resultat.getString(2));
+                
+                
+                
+
+                listeNot.add(notification);
+            }
+            return listeNot;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des commercant"+ex.getMessage());
+            return null;
+        } 
+        
+    }
+
+    public void UpdateVu(Notification n) {
+        
+        String requete = "update notification set vu=? WHERE id_client=?" ;
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1,1);
+            ps.setInt(2, n.getId_client());
+            ps.executeUpdate();
+            System.out.println("Vu du notification effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+        
+        
+        
+        
+        
+    }
+    
     
 } 
     
