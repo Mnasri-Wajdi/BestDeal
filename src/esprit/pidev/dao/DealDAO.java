@@ -110,7 +110,7 @@ public class DealDAO {
         }
     }
     
-    public List<Deal> DisplayAllDeal (){
+    public List<Deal> DisplayAllDeal (){ //@mehdi
 
 
         List<Deal> listecommercant = new ArrayList<Deal>();
@@ -145,6 +145,39 @@ public class DealDAO {
             return null;
         }
     }
+    
+    public List<Deal> DisplayAllDeals (){ //@syrine
+
+            
+            
+
+        List<Deal> listeDeal = new ArrayList<Deal>();
+
+        String requete = "select * from deal";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+   
+            while(resultat.next()){
+                Deal deal =new Deal();
+                deal.setId_deal(resultat.getInt(1));
+                deal.setLibelle_deal(resultat.getString(2));
+                deal.setDescription(resultat.getString(3));
+                deal.setCategorie(resultat.getString(4));
+                deal.setDate_debut(resultat.getString(5));
+                deal.setDate_fin(resultat.getString(6));
+                deal.setAncien_montant(resultat.getFloat(7)) ;       
+                deal.setNouveau_montant(resultat.getFloat(8));
+               		
+                listeDeal.add(deal);
+            }
+            return listeDeal;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
+            return null;
+        }}
     
 } 
     
