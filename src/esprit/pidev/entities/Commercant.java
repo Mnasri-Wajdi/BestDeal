@@ -17,15 +17,34 @@ public class Commercant {
    private String email;
    private String login;
    private String password;
-   private double note;
+   private float note;
+   private int nbr_note;
+   private  float somme_note; 
 
-    public double getNote() {
+    public float getNote() {
         return note;
     }
 
-    public void setNote(double note) {
+    public void setNote(float note) {
         this.note = note;
     }
+
+    public int getNbr_note() {
+        return nbr_note;
+    }
+
+    public void setNbr_note(int nbr_note) {
+        this.nbr_note = nbr_note;
+    }
+
+    public float getSomme_note() {
+        return somme_note;
+    }
+
+    public void setSomme_note(float somme_note) {
+        this.somme_note = somme_note;
+    }
+
    
 
 

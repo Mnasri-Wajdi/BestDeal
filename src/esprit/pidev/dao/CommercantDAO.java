@@ -22,7 +22,7 @@ public class CommercantDAO {
     
     public void InsertCommercant(Commercant c){
     
-         String requete = "insert into commercant (nom_commercant,description,adresse,email,telephone,login,password,note_commercant) values (?,?,?,?,?,?,?,0)";
+         String requete = "insert into commercant (nom_commercant,description,adresse,email,telephone,login,password,note_commercant,nbr_note,somme_note) values (?,?,?,?,?,?,?,0,0,0)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, c.getNom_commercant());
