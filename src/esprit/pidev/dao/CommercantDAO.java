@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Marwen
  */
-//hhh
+//hfff
 public class CommercantDAO {
     
     public void InsertCommercant(Commercant c){
