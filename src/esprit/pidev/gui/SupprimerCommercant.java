@@ -139,13 +139,15 @@ public class SupprimerCommercant extends javax.swing.JFrame {
 
     private void btn_supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_supprimerActionPerformed
 
+     int resultat=   JOptionPane.showConfirmDialog(null,"Êtes-vous sûr de vouloir supprimer ce commercant?", "Supression", JOptionPane.YES_NO_OPTION);
         // TODO add your handling code here:
+        if (resultat==JOptionPane.YES_OPTION) {   
         CommercantDAO cdao = new CommercantDAO();
         cdao.deleteCommercant((int) jTable1.getValueAt(jTable1.getSelectedRow(),0));
         jTable1.setModel(new CommercantDeleteModel());
         
-         JOptionPane.showMessageDialog(this, "Supression effectué avec succès");
-        
+         JOptionPane.showMessageDialog(this, "Commerçant supprimé avec succès");
+        }
     }//GEN-LAST:event_btn_supprimerActionPerformed
 
 

@@ -7,6 +7,8 @@ package esprit.pidev.gui;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.entities.Commercant;
 import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -307,6 +309,11 @@ public class AddCommercant extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static boolean isEmailAdress(String email){
+    Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+    Matcher m = p.matcher(email.toUpperCase());
+    return m.matches();
+    }
     private void adr_socActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adr_socActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_adr_socActionPerformed
@@ -356,12 +363,13 @@ public class AddCommercant extends javax.swing.JFrame {
            if (email_soc.getText().isEmpty()) {
             email_label.setText("Champ vide");
         }
-           else if (!(email_soc.getText().contains("@"))|!(email_soc.getText().contains("."))) {
-            email_label.setText("Email non valide");
-               
+           else if (isEmailAdress(email_soc.getText())) {
+          email_label.setText(""); 
         }
            else
-        email_label.setText("");
+          email_label.setText("Email non valide");
+              
+           
             if (log_soc.getText().isEmpty()) {
             log_label.setText("Champ vide");
         }
