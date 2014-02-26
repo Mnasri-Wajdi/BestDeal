@@ -21,9 +21,19 @@ public class Client {
     private String adresse;
     private String ville;
     private int code_postal;
-    private Date date_naissance;
+    private String date_naissance;
     private String email;
     private int telephone;
+
+    public String getDate_naissance() {
+        return date_naissance;
+    }
+
+    public void setDate_naissance(String date_naissance) {
+        this.date_naissance = date_naissance;
+    }
+    
+    
     
     public int getId_client() {
         return id_client;
@@ -61,10 +71,7 @@ public class Client {
         return code_postal;
     }
 
-    public Date getDate_naissance() {
-        return date_naissance;
-    }
-
+   
     public String getEmail() {
         return email;
     }
@@ -109,9 +116,7 @@ public class Client {
         this.code_postal = code_postal;
     }
 
-    public void setDate_naissance(Date date_naissance) {
-        this.date_naissance = date_naissance;
-    }
+  
 
     public void setEmail(String email) {
         this.email = email;
