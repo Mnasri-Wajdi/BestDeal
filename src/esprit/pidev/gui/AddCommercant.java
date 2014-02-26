@@ -9,6 +9,7 @@ import esprit.pidev.entities.Commercant;
 import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.smartcardio.CommandAPDU;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,14 +17,20 @@ import javax.swing.JOptionPane;
  * @author Marwen
  */
 public class AddCommercant extends javax.swing.JFrame {
-
+public static int idlog=1;
+    
+    
+ 
+    
     /**
      * Creates new form AddCommercant
      */
     public AddCommercant() {
         initComponents();
+    
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,6 +66,8 @@ public class AddCommercant extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        logs = new javax.swing.JLabel();
+        button2 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -188,6 +197,15 @@ public class AddCommercant extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
+        logs.setText("   ");
+
+        button2.setLabel("Déconnexion");
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,9 +213,6 @@ public class AddCommercant extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,14 +256,28 @@ public class AddCommercant extends javax.swing.JFrame {
                             .addComponent(email_label, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pwd_label, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132))))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(132, 132, 132))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -407,7 +436,13 @@ public class AddCommercant extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 getContentPane().setBackground(Color.WHITE);
-// TODO add your handling code here:
+CommercantDAO cdao = new CommercantDAO();
+   Commercant c=cdao.findCommercantById(AddCommercant.idlog);
+   logs.setText("Bonjour "+c.getLogin());
+
+
+   
+   // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
     private void pwd_socActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwd_socActionPerformed
@@ -417,7 +452,8 @@ getContentPane().setBackground(Color.WHITE);
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          SupprimerCommercant f2 = new SupprimerCommercant();
-        f2.setVisible(true);
+         this.setVisible(false);
+         f2.setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -425,8 +461,15 @@ getContentPane().setBackground(Color.WHITE);
 
         // TODO add your handling code here:  
       UpdateCommercant f3 = new UpdateCommercant();
-        f3.setVisible(true); //afficher l'interface
+      this.setVisible(false);  
+      f3.setVisible(true); //afficher l'interface
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        // TODO add your handling code here:
+idlog=-1;
+    }//GEN-LAST:event_button2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,6 +509,7 @@ getContentPane().setBackground(Color.WHITE);
     private javax.swing.JLabel adr_label1;
     private javax.swing.JTextField adr_soc;
     private javax.swing.JButton btn_add_commercant;
+    private java.awt.Button button2;
     private javax.swing.JTextArea desc_soc;
     private javax.swing.JLabel email_label;
     private javax.swing.JTextField email_soc;
@@ -483,6 +527,7 @@ getContentPane().setBackground(Color.WHITE);
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel log_label;
     private javax.swing.JTextField log_soc;
+    private javax.swing.JLabel logs;
     private javax.swing.JLabel nom_label;
     private javax.swing.JTextField nom_soc;
     private javax.swing.JLabel pwd_label;

@@ -21,7 +21,7 @@ public class DealDAO {
  public void insertDeal(Deal d){
    
       // CommercantDAO commercantdao=new CommercantDAO();
-        String requete = "insert into deal (libelle_deal,description,categorie,date_debut,date_fin,ancien_montant,nouveau_montant,quantite_disponible,nombre_reservation,idcommercant) values (?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into deal (libelle_deal,description,categorie,date_debut,date_fin,ancien_montant,nouveau_montant,quantite_diponible,nombre_reservation,idcommercant) values (?,?,?,?,?,?,?,?,?,?)";
         try {//commercant=commercantdao.findDealById(st.getCommercant().getIdCommercant());
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, d.getLibelle_deal());

@@ -406,7 +406,6 @@ public class Frame_AddDeal extends javax.swing.JFrame {
         deal.setLibelle_deal(tf_libelle.getText());
         deal.setDescription(ta_description.getText());
         deal.setCategorie(tf_categorie.getText());
-        
         String d=new Date().toString();
         deal.setDate_debut((tf_datedebut.getText()));
         deal.setDate_fin((tf_datefin.getText()));
