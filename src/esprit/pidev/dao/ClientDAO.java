@@ -31,7 +31,7 @@ public class ClientDAO {
             ps.setString(   2 , d.getPassword());
             ps.setString(   3 , d.getNom());
             ps.setString(   4 , d.getPrenom());
-            ps.setString(   5 , d.getSexe()+"");
+            ps.setString(   5 , d.getSexe());
             ps.setString(   6 , d.getAdresse());
             ps.setString(   7 , d.getVille());
             ps.setString(8 , d.getCode_postal()+"");

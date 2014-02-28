@@ -272,7 +272,7 @@ public class frame_visitor extends javax.swing.JFrame {
             type=jRadioButton2.getText();
         if(jRadioButton1.isSelected())
             type=jRadioButton1.getText();
-        d1.setSexe(type.charAt(0));
+        d1.setSexe(type);
        client_DAO.insertclient(d1);
        
          

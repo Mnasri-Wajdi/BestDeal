@@ -282,7 +282,7 @@ public class MailJframeAdmin extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 adminDAO adao = new adminDAO();
    administrateur a=adao.findAdminById(frame_aceuil.idlog);
-        jTextMailAddressSender.setText(a.getLogin()+"@gmailcom");
+        jTextMailAddressSender.setText(a.getMail());
         logs.setText("Admin "+a.getNom_admin());
        
     }//GEN-LAST:event_formWindowOpened

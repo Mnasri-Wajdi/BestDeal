@@ -42,6 +42,7 @@ public class adminDAO {
                 administrateur.setNom_admin(resultat.getString(2));
                 administrateur.setLogin(resultat.getString(3));
                 administrateur.setPassword(resultat.getString(4));
+                administrateur.setMail(resultat.getString(5));
                 listeadmins.add(administrateur);
             }
             return listeadmins;
@@ -65,6 +66,7 @@ public class adminDAO {
                 admin.setNom_admin(resultat.getString(2));
                 admin.setLogin(resultat.getString(3));
                 admin.setPassword(resultat.getString(4));
+                admin.setMail(resultat.getString(5));
             }
         } catch (SQLException ex) {
             //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,6 +88,7 @@ public class adminDAO {
                         admin.setNom_admin(resultat.getString(2));
                         admin.setLogin(resultat.getString(3));
                         admin.setPassword(resultat.getString(4));
+                        admin.setMail(resultat.getString(5));
                
             }
             return admin;

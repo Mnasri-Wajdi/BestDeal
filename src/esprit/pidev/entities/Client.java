@@ -17,7 +17,7 @@ public class Client {
     private String password;
     private String nom;
     private String prenom;
-    private char sexe;
+    private String sexe;
     private String adresse;
     private String ville;
     private int code_postal;
@@ -55,7 +55,7 @@ public class Client {
         return prenom;
     }
 
-    public char getSexe() {
+    public String getSexe() {
         return sexe;
     }
 
@@ -100,7 +100,7 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public void setSexe(char sexe) {
+    public void setSexe(String sexe) {
         this.sexe = sexe;
     }
 

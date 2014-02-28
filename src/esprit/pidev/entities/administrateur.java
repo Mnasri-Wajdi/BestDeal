@@ -14,7 +14,19 @@ public class administrateur {
     private String password;
     private String nom_admin;
     private int id_admin;
+    private String mail;
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    
+    
+    
     public int getId_admin() {
         return id_admin;
     }
