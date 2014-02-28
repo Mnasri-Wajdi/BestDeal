@@ -5,8 +5,13 @@
 package esprit.pidev.gui;
 
 import esprit.pidev.dao.CommercantDAO;
+import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.Commercant;
+import esprit.pidev.entities.administrateur;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.smartcardio.CommandAPDU;
@@ -17,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Marwen
  */
 public class AddCommercant extends javax.swing.JFrame {
-public static int idlog=1;
+
     
     
  
@@ -68,6 +73,7 @@ public static int idlog=1;
         jButton2 = new javax.swing.JButton();
         logs = new javax.swing.JLabel();
         button2 = new java.awt.Button();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -206,6 +212,13 @@ public static int idlog=1;
             }
         });
 
+        jButton3.setText("Retour au menu");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -264,6 +277,10 @@ public static int idlog=1;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(132, 132, 132))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(167, 167, 167))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,6 +349,8 @@ public static int idlog=1;
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton3)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -436,9 +455,9 @@ public static int idlog=1;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 getContentPane().setBackground(Color.WHITE);
-CommercantDAO cdao = new CommercantDAO();
-   Commercant c=cdao.findCommercantById(AddCommercant.idlog);
-   logs.setText("Bonjour "+c.getLogin());
+adminDAO adao = new adminDAO();
+   administrateur a=adao.findAdminById(frame_aceuil.idlog);
+logs.setText("Admin "+a.getNom_admin());
 
 
    
@@ -467,9 +486,24 @@ CommercantDAO cdao = new CommercantDAO();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        // TODO add your handling code here:
-idlog=-1;
+        try {
+            frame_aceuil.idlog=-1;
+            frame_aceuil f4 = new frame_aceuil();
+            this.setVisible(false);  
+               f4.setVisible(true);
+               
+            
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_button2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+AdminMenu f1 = new AdminMenu();
+                        this.setVisible(false);
+                         f1.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -515,6 +549,7 @@ idlog=-1;
     private javax.swing.JTextField email_soc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

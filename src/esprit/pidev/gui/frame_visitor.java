@@ -6,7 +6,10 @@ package esprit.pidev.gui;
 
 import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.entities.Client;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
 
 
@@ -272,7 +275,11 @@ public class frame_visitor extends javax.swing.JFrame {
         d1.setSexe(type.charAt(0));
        client_DAO.insertclient(d1);
        
-        
+         
+           // TODO add your handling code here:
+
+ 
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

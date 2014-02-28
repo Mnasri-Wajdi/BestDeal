@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
  * @author Chala
  */
 public class frame_aceuil extends javax.swing.JFrame {
-
+public static int idlog;
     /**
      * Creates new form frame_aceuil
      */
@@ -236,7 +236,13 @@ public class frame_aceuil extends javax.swing.JFrame {
             administrateur admin = adao.findAdminByLogin(jTextField1.getText());
                 if (admin != null) {
                     if (admin.getPassword().equals(jPasswordField2.getText())) {
-                        JOptionPane.showMessageDialog(null, "Authentification avecc succs! ", "ok", 1);
+                               
+                        idlog=admin.getId_admin();
+                         
+                          
+                       AdminMenu f1 = new AdminMenu();
+                        this.setVisible(false);
+                         f1.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Mot de passe incorrect", "Error", 1);
                     }
@@ -263,7 +269,15 @@ public class frame_aceuil extends javax.swing.JFrame {
             Commercant commercant = com.findCommByLogin(jTextField1.getText());
                 if (commercant != null) {
                     if (commercant.getPassword().equals(jPasswordField2.getText())) {
-                        JOptionPane.showMessageDialog(null, "Authentification avecc succs! ", "ok", 1);
+                       
+                        
+                        idlog=commercant.getId_commercant();
+                         
+                          
+                       CommercantMenu f1 = new CommercantMenu();
+                        this.setVisible(false);
+                         f1.setVisible(true);
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "Mot de passe incorrect", "Error", 1);
                     }

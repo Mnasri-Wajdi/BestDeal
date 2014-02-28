@@ -135,18 +135,23 @@ public void updateCommercant(Commercant c){
         }
     }
         
-
-        public Commercant findCommByLogin (String login){
+ public Commercant findCommByLogin (String login){
         Commercant com =null;
-        String requete = "select login,password from commercant where login='"+login+"'";
+        String requete = "select * from commercant where login='"+login+"'";
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
             while(resultat.next()){
                 com = new Commercant();
-                com.setLogin(resultat.getString(1));
-                com.setPassword(resultat.getString(2));
+                com.setId_commercant(resultat.getInt(1));
+                com.setNom_commercant(resultat.getString(2));
+                com.setDescription(resultat.getString(3));
+                com.setAdresse(resultat.getString(4));
+                com.setEmail(resultat.getString(5));
+                com.setTel(resultat.getInt(6));
+                com.setLogin(resultat.getString(7));
+                com.setPassword(resultat.getString(8));
             }
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,6 +160,7 @@ public void updateCommercant(Commercant c){
         return com;
     }
     
+
          public void insertcommercant(Commercant c) {
 
                 String requete = "insert into commercant (nom_commercant,description,adresse,email,telephone,login,password,note_commercant,nbr_note,somme_note) values (?,?,?,?,?,?,?,0,0,0)";

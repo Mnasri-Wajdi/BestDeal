@@ -5,7 +5,9 @@
 package esprit.pidev.gui;
 
 import esprit.pidev.dao.CommercantDAO;
+import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.Commercant;
+import esprit.pidev.entities.administrateur;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -17,7 +19,7 @@ import javax.swing.JFileChooser;
  *
  * @author MohamedAmine
  */
-public class MailJframe extends javax.swing.JFrame {
+public class MailJframeAdmin extends javax.swing.JFrame {
 
     URL url;
     Mail mail = new Mail();
@@ -26,7 +28,7 @@ public class MailJframe extends javax.swing.JFrame {
     /**
      * Creates new form MailJframe
      */
-    public MailJframe() {
+    public MailJframeAdmin() {
         initComponents();
         
     }
@@ -203,7 +205,9 @@ public class MailJframe extends javax.swing.JFrame {
                             .addComponent(jLabelpieceJointe, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jButtonSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jTextArearObjectLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonSendMail, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -276,10 +280,10 @@ public class MailJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextMailAddressSenderActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-CommercantDAO cdao = new CommercantDAO();
-   Commercant c=cdao.findCommercantById(frame_aceuil.idlog);
-        jTextMailAddressSender.setText(c.getEmail());
-        logs.setText("Bienvenue "+c.getNom_commercant());
+adminDAO adao = new adminDAO();
+   administrateur a=adao.findAdminById(frame_aceuil.idlog);
+        jTextMailAddressSender.setText(a.getLogin()+"@gmailcom");
+        logs.setText("Admin "+a.getNom_admin());
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -331,20 +335,20 @@ CommercantDAO cdao = new CommercantDAO();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MailJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MailJframeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MailJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MailJframeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MailJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MailJframeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MailJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MailJframeAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MailJframe().setVisible(true);
+                new MailJframeAdmin().setVisible(true);
             }
         });
     }

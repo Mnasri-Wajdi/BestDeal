@@ -38,8 +38,10 @@ public class adminDAO {
             ResultSet resultat = statement.executeQuery(requete);
             while (resultat.next()) {
                 administrateur administrateur = new administrateur();
-                administrateur.setLogin(resultat.getString(1));
-                administrateur.setPassword(resultat.getString(2));
+               administrateur.setId_admin(resultat.getInt(1));
+                administrateur.setNom_admin(resultat.getString(2));
+                administrateur.setLogin(resultat.getString(3));
+                administrateur.setPassword(resultat.getString(4));
                 listeadmins.add(administrateur);
             }
             return listeadmins;
@@ -59,8 +61,10 @@ public class adminDAO {
             ResultSet resultat = statement.executeQuery(requete);
             while (resultat.next()) {
                 admin = new administrateur();
-                admin.setLogin(resultat.getString(1));
-                admin.setPassword(resultat.getString(2));
+                 admin.setId_admin(resultat.getInt(1));
+                admin.setNom_admin(resultat.getString(2));
+                admin.setLogin(resultat.getString(3));
+                admin.setPassword(resultat.getString(4));
             }
         } catch (SQLException ex) {
             //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,4 +72,29 @@ public class adminDAO {
         }
         return admin;
     }
+    
+    public administrateur findAdminById(int id){
+    administrateur admin = new administrateur();
+     String requete = "select * from administrateur where id_admin=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                        admin.setId_admin(resultat.getInt(1));
+                        admin.setNom_admin(resultat.getString(2));
+                        admin.setLogin(resultat.getString(3));
+                        admin.setPassword(resultat.getString(4));
+               
+            }
+            return admin;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot "+ex.getMessage());
+            return null;
+        }
+    }
+    
 }
