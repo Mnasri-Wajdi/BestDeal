@@ -20,6 +20,9 @@ import java.util.List;
  * @author Chala
  */
 public class ClientDAO {
+    
+     //marwen chalghoumi//  Le client fait une inscription pour la première fois//
+    
     public void insertclient (Client d){
 
         String requete = "INSERT INTO client (`login`, `password`, `nom`, `prenom`, `sexe`, "
@@ -85,6 +88,116 @@ public class ClientDAO {
         }
         return client;
     }
+   
+     
+     //oumaima
+     
+     
+      public void AjouterClient(Client C){
+          //L'administrateur peut ajouter un client  du a un probleme technique//
+        String requete = "insert into Client (id_client,login,password,nom,prenom,sexe,adresse,ville,code_postal,date_naissance,email,telephone) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, C.getId_client());
+            ps.setString(2, C.getLogin());
+            ps.setString(3, C.getPassword());
+            ps.setString(4, C.getNom());
+            ps.setString(5, C.getPrenom());
+            ps.setString(6, C.getSexe());
+            ps.setString(7, C.getAdresse());
+            ps.setString(8, C.getVille());
+            ps.setInt(9, C.getCode_postal());
+            ps.setString(10,C.getDate_naissance());
+            ps.setString(11, C.getEmail());
+            ps.setInt(12, C.getTelephone());
+            ps.executeUpdate();
+            System.out.println("Ajout effectuée avec succès");
+            //System.out.println(C.getDate_naissance());
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de l'insertion "+ex.getMessage());
+            
+        }}
+       public void updateClient (Client c){
+           
+        String requete = "update client set login=?, password=?, nom=?,prenom=?,sexe=?,adresse=?,ville=?,code_postal=?,date_naissance=?,email=?,telephone=? where id_client=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+     
+            ps.setString(1, c.getLogin());
+            ps.setString(2, c.getPassword());
+            ps.setString(3, c.getNom());
+            ps.setString(4,c.getPrenom());
+            ps.setString(5, c.getSexe());
+            ps.setString(6, c.getAdresse());
+            ps.setString(7, c.getVille());
+            ps.setInt(8, c.getCode_postal());
+            ps.setString(9, c.getDate_naissance());
+            ps.setString(10, c.getEmail());
+            ps.setInt(11, c.getTelephone());
+            ps.setInt(12, c.getId_client());
+            ps.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+
+       }
     
+     
+        
+           public  List<Client> DisplayAllClients () {
+        
+        List<Client> listClient = new ArrayList<>();
+
+        String requete = "select * from client";
+        try {
+      Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+   
+            while(resultat.next()){
+                Client client =new Client();
+                client.setId_client(resultat.getInt(1));
+                client.setLogin(resultat.getString(2));
+                client.setPassword(resultat.getString(3));
+                client.setNom(resultat.getString(4));
+                client.setPrenom(resultat.getString(5));
+                client.setSexe(resultat.getString(6));
+                client.setAdresse(resultat.getString(7));
+                client.setVille(resultat.getString(8));
+                client.setCode_postal(resultat.getInt(9));
+                client.setDate_naissance(resultat.getString(10));
+                client.setEmail(resultat.getString(11));
+                client.setTelephone(resultat.getInt(12));
+                
+                listClient.add(client);
+            }
+            return listClient;
+        } catch (SQLException ex) {
+            System.out.println("erreur lors du chargement des clients "+ex.getMessage());
+            return null ;
+        }   
+}
+        
+      
+    public void deleteClient(int id){
+
+          String requete = "delete from client where id_client=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("Suppression effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la suppression "+ex.getMessage());
+        }
+    }
+     
+     
+    
+     
+     
 }
     

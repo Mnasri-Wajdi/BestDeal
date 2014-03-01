@@ -23,8 +23,53 @@ public class ReservationDAO {
     //test66
     //884
     
-     public void InsertReservation(Reservation reservation){
+      public boolean verifier_reservation(Reservation res )
+    {
+        
+
+        String requete = "select * from reservation";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                Reservation reservation =new Reservation();
+                reservation.setId_client(resultat.getInt(3));
+                reservation.setId_deal(resultat.getInt(4));
+                if ((reservation.getId_client()== res.getId_client())&&(reservation.getId_deal()==res.getId_deal())) {
+                    return true;
+                }
+         
+            }
+            return false;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
+            return false;
+        }
+    }
     
+     public void InsertReservation(Reservation reservation){
+         if (verifier_reservation(reservation)) {
+             String requete="update reservation set  date_reservation =?,quantite=quantite+1 where id_client=? and id_deal=? ";
+           try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+           ps.setString(1,reservation.getDate_reservation());      
+           //ps.setInt(2,reservation.getQuantite());
+        ps.setInt(2,reservation.getId_client());
+               ps.setInt(3,reservation.getId_deal());
+
+
+
+            ps.executeUpdate();
+            System.out.println("Update effectuée avec succès");
+       } catch (SQLException ex) {
+         
+            System.out.println("erreur lors de l'Update "+ex.getMessage());
+        }
+         }
+         else
+         {
          String requete = "insert into reservation (date_reservation,id_client,id_deal,quantite,prix) values (?,?,?,?,?)";
        
         try {
@@ -42,9 +87,8 @@ public class ReservationDAO {
          
             System.out.println("erreur lors de l'insertion "+ex.getMessage());
         }
-    
+         }
     }
-  
     public List<Reservation> DisplayAllReservations (){
 
 

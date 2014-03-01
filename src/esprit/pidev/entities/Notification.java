@@ -12,9 +12,17 @@ public class Notification {
 
     private int id_notification;
     private String type_notification;
+    private String date_notification;
     private int id_client;
     private int vu;
     
+    public String getDate_notification() {
+        return date_notification;
+    }
+
+    public void setDate_notification(String date_notification) {
+        this.date_notification = date_notification;
+    }
     
     public int getId_notification() {
         return id_notification;

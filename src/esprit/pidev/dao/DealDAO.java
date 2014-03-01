@@ -8,12 +8,15 @@ import esprit.pidev.entities.Deal;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.entities.Notification;
 import esprit.pidev.entities.Reclamation;
+import esprit.pidev.entities.Reservation2;
+import esprit.pidev.entities.Verif;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -181,7 +184,7 @@ public class DealDAO {
     
     //Mnasri wajdi
     
-    public void insertProbleme(Reclamation r){
+public void insertProbleme(Reclamation r){
 
         String requete = "insert into reclamation (message,id_client) values (?,?)";
         try {
@@ -199,14 +202,16 @@ public class DealDAO {
     }
     
     
-    public void updateNoteCommercant(Commercant c){
+public void updateNoteCommercant(Commercant c){
     
     
-        String requete = "update commercant set note_commercant=? WHERE id_commercant=?" ;
+        String requete = "update commercant set note_commercant=?,nbr_note=?,somme_note=? WHERE id_commercant=?" ;
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setDouble(1,c.getNote());
-            ps.setInt(2, c.getId_commercant());
+            ps.setFloat(1,c.getNote());
+            ps.setInt(2,c.getNbr_note());
+            ps.setFloat(3,c.getSomme_note());
+            ps.setInt(4, c.getId_commercant());
             ps.executeUpdate();
             System.out.println("Mise à jour du note effectuée avec succès");
         } catch (SQLException ex) {
@@ -237,7 +242,9 @@ public class DealDAO {
                 commercant.setTel(resultat.getInt(6));
                 commercant.setLogin(resultat.getString(7));
                 commercant.setPassword(resultat.getString(8));
-                commercant.setNote(resultat.getInt(9));
+                commercant.setNote(resultat.getFloat(9));
+                commercant.setNbr_note(resultat.getInt(10));
+                commercant.setSomme_note(resultat.getFloat(11));
                 
 
                 listecommercant.add(commercant);
@@ -250,11 +257,65 @@ public class DealDAO {
         }
     }
     
-    public List<Notification> DisplayAllNot(int id) {
+    public boolean allverif (int a,int b){
+
+
+        List<Verif> listeverif = new ArrayList<Verif>();
+
+        String requete = "select * from verif_premier_note where id_client="+a+" and id_commercant="+b;
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                Verif verif =new Verif();
+                verif.setId_verif_premier_note(resultat.getInt(1));
+                verif.setId_client(resultat.getInt(2));
+                verif.setId_commercant(resultat.getInt(3));
+                
+                
+
+                listeverif.add(verif);
+            }
+            if( listeverif.isEmpty() ){
+                return true;}
+                else
+            { return false;}
+            
+            
+            
+            
+            
+            
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Vérification"+ex.getMessage());
+            return false;
+        }
+    }
+    
+    public void insertVerif(Verif v){
+
+        String requete = "insert into verif_premier_note (id_client,id_commercant) values (?,?)";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, v.getId_client());
+            ps.setInt(2, v.getId_commercant());
+            ps.executeUpdate();
+            
+            System.out.println("Ajout effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+            System.out.println("erreur lors de l'insertion "+ex.getMessage());
+        }
+    }
+    
+public List<Notification> DisplayAllNot(int id) {
         
        List<Notification> listeNot = new ArrayList<Notification>();
        System.out.println(id);
-        String requete = "select id_notification,type_notification from notification where vu=0 and id_client="+id;//tf_idClient=id_client
+        String requete = "select type_notification,date_notification,vu from notification  where id_client="+id+" ORDER BY vu ASC";//tf_idClient=id_client
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
@@ -262,8 +323,9 @@ public class DealDAO {
             while(resultat.next()){
                 Notification notification =new Notification();
                 
-                notification.setId_notification(resultat.getInt(1));
-                notification.setType_notification(resultat.getString(2));
+                notification.setType_notification(resultat.getString(1));
+                notification.setDate_notification(resultat.getString(2));
+                notification.setVu(resultat.getInt(3));
                 
                 
                 
@@ -273,7 +335,7 @@ public class DealDAO {
             return listeNot;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des commercant"+ex.getMessage());
+            System.out.println("erreur lors du chargement des notes"+ex.getMessage());
             return null;
         } 
         
@@ -291,9 +353,153 @@ public class DealDAO {
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la mise à jour "+ex.getMessage());
-        }       
+        }
+        
+        
+        
+        
+        
     }
     
+       public void DisplayNotifDeal(int id) {
+        
+       
+       System.out.println(id);
+       String nom_deal="";
+       String description_deal="";
+       String requete = "select id_deal2,date_reservation2 from reservation2 where id_client2="+id;
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                           Statement statement2 = MyConnection.getInstance()
+                           .createStatement();
+                           int x=resultat.getInt(1);                  
+                           String requete2 = "select libelle_deal,description from deal where id_deal="+x;
+                           ResultSet resultat2 = statement2.executeQuery(requete2);
+                           while(resultat2.next()){
+                
+                           nom_deal=resultat2.getString(1);
+                           description_deal=resultat2.getString(2);
+                
+                                                  }
+                
+                
+                String requete3 = "insert into notification (type_notification,date_notification,id_client,vu) values (?,?,?,?)";
+                
+               
+                            try {
+                                   PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete3);
+                                   ps.setString(1,"Le deal "+nom_deal+" "+description_deal+" est Réservé" );
+                                   ps.setString(2,resultat.getString(2));
+                                   ps.setInt(3,id);
+                                   ps.setInt(4,0);
+                                   ps.executeUpdate();
+            
+                                   System.out.println("Ajout effectuée avec succès");
+                                   } catch (SQLException ex) {
+                                   //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+                                   System.out.println("erreur lors de l'insertion "+ex.getMessage());
+                                      }
+                
+             
+                
+            }
+            
+           
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des notifications"+ex.getMessage());
+          
+        } 
+        
+        
+            
+        String requete4 = "delete from reservation2" ;
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete4);
+            
+            ps.executeUpdate();
+            System.out.println("contenu reservation2 supprimée");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la suppression "+ex.getMessage());
+        }
+    }
+    
+       public void InsertReservation2(Reservation2 reservation2){
+    
+         String requete = "insert into reservation2 (date_reservation2,id_client2,id_deal2,quantite2,prix2) values (?,?,?,?,?)";
+       
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+           ps.setString(1,reservation2.getDate_reservation2());
+           ps.setInt(2,reservation2.getId_client2());
+           ps.setInt(3,reservation2.getId_deal2());
+           ps.setInt(4,reservation2.getQuantite2());
+           ps.setDouble(5,reservation2.getPrix2());
+
+
+            ps.executeUpdate();
+            System.out.println("Ajout effectuée avec succès");
+       } catch (SQLException ex) {
+         
+            System.out.println("erreur lors de l'insertion "+ex.getMessage());
+        }
+    
+    } 
+       public void InsertDealNot (Deal d){ 
+
+       
+       
+       String requete = "select id_client from client";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            
+            while(resultat.next()){
+                
+                         
+                
+                String requete9 = "insert into notification (type_notification,date_notification,id_client,vu) values (?,?,?,?)";
+                
+               
+                            try {
+                                   PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete9);
+                                   ps.setString(1,"Un nouveau deal "+d.getLibelle_deal()+" de catégorie "+d.getCategorie()+" avec un prix de "+d.getNouveau_montant()+" est Ajouté" );
+                                   ps.setString(2,new Date().toString());
+                                   ps.setInt(3,resultat.getInt(1));
+                                   ps.setInt(4,0);
+                                   ps.executeUpdate();
+            
+                                   System.out.println("Ajout effectuée avec succès");
+                                   } catch (SQLException ex) {
+                                   //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+                                   System.out.println("erreur lors de l'insertion "+ex.getMessage());
+                                      }
+                
+             
+                
+            }
+            
+           
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des notifications"+ex.getMessage());
+          
+        } 
+       
+       
+       
+       
+       
+    
+    
+   }    
     public  void Insert_Reserv_Deal(){
         
         
