@@ -4,7 +4,10 @@
  */
 package esprit.pidev.gui.mnasri_wajdi;
 
+import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
+import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Notification;
 import javax.swing.JOptionPane;
 
@@ -37,6 +40,7 @@ public static  int n;
         jScrollPane1 = new javax.swing.JScrollPane();
         javax.swing.JTable jTable1 = new javax.swing.JTable();
         btm_vu = new javax.swing.JToggleButton();
+        logs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 102));
@@ -50,14 +54,13 @@ public static  int n;
 
         jLabel2.setText("Client est :");
 
-        tf_idClient.setText("1");
         tf_idClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_idClientActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new Mytable_Notification(Integer.parseInt(tf_idClient.getText())));
+        jTable1.setModel(new Mytable_Notification(frame_aceuil.idlog));
         jScrollPane1.setViewportView(jTable1);
 
         btm_vu.setText("Merci pour les notifications");
@@ -73,27 +76,30 @@ public static  int n;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_idClient, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(btm_vu)))
+                .addGap(81, 81, 81)
+                .addComponent(btm_vu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_idClient, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(tf_idClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(tf_idClient))
+                    .addComponent(logs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
@@ -112,12 +118,17 @@ public static  int n;
         n.setId_client(Integer.parseInt(tf_idClient.getText()));
             deal_dao.UpdateVu(n);
             this.dispose();
+           
         
     }//GEN-LAST:event_btm_vuActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
-        
+  
+        ClientDAO cldao = new ClientDAO();
+   Client c=cldao.findClientById(frame_aceuil.idlog);
+    logs.setText("Bienvenue "+c.getNom());
+        tf_idClient.setText(Integer.toString(frame_aceuil.idlog));
+       
     }//GEN-LAST:event_formWindowOpened
 
     private void tf_idClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_idClientActionPerformed
@@ -165,6 +176,7 @@ public static  int n;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logs;
     private javax.swing.JTextField tf_idClient;
     // End of variables declaration//GEN-END:variables
 }

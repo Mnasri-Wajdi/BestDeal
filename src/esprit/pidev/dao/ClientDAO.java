@@ -72,15 +72,29 @@ public class ClientDAO {
     }
      public Client findclientByLogin (String login){
         Client client =null;
-        String requete = "select login,password from client where login='"+login+"'";
+        String requete = "select * from client where login='"+login+"'";
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
             while(resultat.next()){
                 client = new Client();
-               client.setLogin(resultat.getString(1));
-                client.setPassword(resultat.getString(2));
+                
+                client.setId_client(resultat.getInt(1));
+                client.setLogin(resultat.getString(2));
+                client.setPassword(resultat.getString(3));
+                client.setNom(resultat.getString(4));
+                client.setPrenom(resultat.getString(5));
+                client.setSexe(resultat.getString(6));
+                client.setAdresse(resultat.getString(7));
+                client.setVille(resultat.getString(8));
+                client.setCode_postal(resultat.getInt(9));
+                client.setDate_naissance(resultat.getString(10));
+                client.setEmail(resultat.getString(11));
+                client.setTelephone(resultat.getInt(12));
+                
+                
+               
             }
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,7 +194,38 @@ public class ClientDAO {
         }   
 }
         
-      
+      public Client findClientById(int id){
+    Client client = new Client();
+     String requete = "select * from Client where id_client=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                client.setId_client(resultat.getInt(1));
+                client.setLogin(resultat.getString(2));
+                client.setPassword(resultat.getString(3));
+                client.setNom(resultat.getString(4));
+                client.setPrenom(resultat.getString(5));
+                client.setSexe(resultat.getString(6));
+                client.setAdresse(resultat.getString(7));
+                client.setVille(resultat.getString(8));
+                client.setCode_postal(resultat.getInt(9));
+                client.setDate_naissance(resultat.getString(10));
+                client.setEmail(resultat.getString(11));
+                client.setTelephone(resultat.getInt(12));
+               
+            }
+            return client;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot "+ex.getMessage());
+            return null;
+        }
+    }
+    
     public void deleteClient(int id){
 
           String requete = "delete from client where id_client=?";

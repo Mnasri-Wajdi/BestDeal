@@ -15,6 +15,7 @@ import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.entities.administrateur;
+import esprit.pidev.shadow.ClientMenu;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -241,10 +242,10 @@ public static int idlog;
                     if (admin.getPassword().equals(jPasswordField2.getText())) {
                                
                         idlog=admin.getId_admin();
-                         
-                          
-                       AdminMenu f1 = new AdminMenu();
-                        this.setVisible(false);
+
+                         AdminMenu f1 = new AdminMenu();
+                       this.dispose();
+                      
                          f1.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Mot de passe incorrect", "Error", 1);
@@ -258,7 +259,11 @@ public static int idlog;
             Client client = clt.findclientByLogin(jTextField1.getText());
                 if (client != null) {
                     if (client.getPassword().equals(jPasswordField2.getText())) {
-                        JOptionPane.showMessageDialog(null, "Authentification avecc succs! ", "ok", 1);
+                      idlog=client.getId_client();
+                         ClientMenu f1 = new ClientMenu();
+                         
+                       this.dispose();
+                       f1.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Mot de passe incorrect", "Error", 1);
                     }
@@ -278,7 +283,7 @@ public static int idlog;
                          
                           
                        CommercantMenu f1 = new CommercantMenu();
-                        this.setVisible(false);
+                       this.dispose();
                          f1.setVisible(true);
                         
                     } else {
