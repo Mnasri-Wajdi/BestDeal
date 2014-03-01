@@ -21,7 +21,7 @@ public class DealDAO {
  public void insertDeal(Deal d){
    
       // CommercantDAO commercantdao=new CommercantDAO();
-        String requete = "insert into deal (libelle_deal,description,categorie,date_debut,date_fin,ancien_montant,nouveau_montant,quantite_diponible,nombre_reservation,idcommercant) values (?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into deal (libelle_deal,description,categorie,date_debut,date_fin,ancien_montant,nouveau_montant,quantite_disponible,idcommercant) values (?,?,?,?,?,?,?,?,?)";
         try {//commercant=commercantdao.findDealById(st.getCommercant().getIdCommercant());
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, d.getLibelle_deal());
@@ -32,8 +32,7 @@ public class DealDAO {
             ps.setDouble(6, d.getAncien_montant());
             ps.setDouble(7, d.getNouveau_montant());
             ps.setInt(8, d.getQuantite_disponible());
-            ps.setInt(9, d.getNombre_reservation());
-            ps.setInt(10, d.getCommercant().getId_commercant());
+            ps.setInt(9, d.getCommercant().getId_commercant());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -45,7 +44,7 @@ public class DealDAO {
 
     public void updateDeal(Deal d){
         String requete;
-     requete = "update deal set libelle_deal=?, description=?, categorie=?, date_debut=?, date_fin=?, ancien_montant=?, nouveau_montant=?, quantite_disponible=?, nombre_reservation=?,idcommercant=?  where id_deal=?";
+     requete = "update deal set libelle_deal=?, description=?, categorie=?, date_debut=?, date_fin=?, ancien_montant=?, nouveau_montant=?, quantite_disponible=?,idcommercant=?  where id_deal=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, d.getLibelle_deal());
@@ -56,9 +55,8 @@ public class DealDAO {
             ps.setDouble(6, d.getAncien_montant());
             ps.setDouble(7, d.getNouveau_montant());
             ps.setInt(8, d.getQuantite_disponible());
-            ps.setInt(9, d.getNombre_reservation());
-            ps.setInt(10, d.getCommercant().getId_commercant());
-            ps.setInt(11, d.getId_deal());
+            ps.setInt(9, d.getCommercant().getId_commercant());
+            ps.setInt(10, d.getId_deal());
             
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
@@ -101,8 +99,7 @@ public class DealDAO {
             deal.setAncien_montant(resultat.getFloat(7));
             deal.setNouveau_montant(resultat.getFloat(8));
             deal.setQuantite_disponible(resultat.getInt(9));
-            deal.setNombre_reservation(resultat.getInt(10));
-            deal.setCommercant(commercantDAO.findCommercantById(resultat.getInt(11)));
+            deal.setCommercant(commercantDAO.findCommercantById(resultat.getInt(10)));
         }
         return deal;
         }
@@ -115,7 +112,7 @@ public class DealDAO {
     public List<Deal> DisplayAllDeal (){ //@mehdi
 
 
-        List<Deal> listecommercant = new ArrayList<Deal>();
+        List<Deal> listedeal = new ArrayList<Deal>();
 
         String requete = "select * from deal";
         try {
@@ -135,12 +132,11 @@ public class DealDAO {
                 deal.setAncien_montant(resultat.getFloat(7));
                 deal.setNouveau_montant(resultat.getFloat(8));
                 deal.setQuantite_disponible(resultat.getInt(9));
-                deal.setNombre_reservation(resultat.getInt(10));
-                deal.setCommercant(commercantDAO.findCommercantById(resultat.getInt(11)));
+                deal.setCommercant(commercantDAO.findCommercantById(resultat.getInt(10)));
             
-                listecommercant.add(deal);
+                listedeal.add(deal);
             }
-            return listecommercant;
+            return listedeal;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors du chargement des deals "+ex.getMessage());
@@ -295,16 +291,100 @@ public class DealDAO {
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }       
+    }
+    
+    public  void Insert_Reserv_Deal(){
+        
+        
+        
+            String requete = "select id_deal from deal";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                
+               if(verif_res(resultat.getInt(1))){
+                   
+                   
+                 
+        String requete2 = "insert into reservation_stock (id_deal,nbr_reservation) values (?,?)";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete2);
+            ps.setInt(1,resultat.getInt(1));
+            ps.setInt(2,0);
+            ps.executeUpdate();
+            
+            System.out.println("Ajout effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+            System.out.println("erreur lors de l'insertion "+ex.getMessage());
+        }
+                
+                     
+               }
+     
+            }
+   
+            
+            
+            
+            
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement "+ex.getMessage());
+          
         }
         
         
+   
+    
+}
+    
+    
+    public boolean verif_res(int m){
+    
+    boolean q=true;
+        
+        String requete5 = "select id_deal from reservation_stock";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat5 = statement.executeQuery(requete5);
+             
+            while(resultat5.next()){
+                
+                if (resultat5.getInt(1)==m) {
+                    q= false;
+                }
+
+            
+                
+            }
+            return q;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement  "+ex.getMessage());
+            return false;
+        }
+    }
         
         
         
+    
+    
+    
     }
     
     
-} 
+    
+    
+    
+    
+    
+
     
     
    

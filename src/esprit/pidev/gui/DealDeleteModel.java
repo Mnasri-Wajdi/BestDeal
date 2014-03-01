@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class DealDeleteModel extends AbstractTableModel{
      List<Deal> listDeal = new ArrayList<Deal>();
-    String []header = {"id Deal","Libelle Deal","description","Categorie","Date Debut","Date Fin","Ancien Montant","Nouveau Montant","Quantite Disponible","Nombre Reservation","nom commercant"};
+    String []header = {"id Deal","Libelle Deal","description","Categorie","Date Debut","Date Fin","Ancien Montant","Nouveau Montant","Quantite Disponible","Nom commercant"};
 
     public DealDeleteModel() { 
         listDeal=new DealDAO().DisplayAllDeal();
@@ -47,9 +47,8 @@ public class DealDeleteModel extends AbstractTableModel{
                                 case 8:
                 return listDeal.get(rowIndex).getQuantite_disponible();
                                    case 9:
-                return listDeal.get(rowIndex).getNombre_reservation();
-                                        case 10:
                 return listDeal.get(rowIndex).getCommercant().getNom_commercant();
+                                       
             default:
                 return null;
         }

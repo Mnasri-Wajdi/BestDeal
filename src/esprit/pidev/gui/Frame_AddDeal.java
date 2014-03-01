@@ -47,17 +47,13 @@ public class Frame_AddDeal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tf_categorie = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tf_datedebut = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        tf_datefin = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         tf_ancienmontant = new javax.swing.JTextField();
         tf_nouveaumontant = new javax.swing.JTextField();
         tf_quantitedisponible = new javax.swing.JTextField();
-        tf_nombrereservation = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         cb_commercant = new javax.swing.JComboBox();
         bt_ajouterdeal = new javax.swing.JButton();
@@ -68,6 +64,8 @@ public class Frame_AddDeal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         lb_ancienmontant = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jdatedebut = new com.toedter.calendar.JDateChooser();
+        jdatefin = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         logs = new javax.swing.JLabel();
@@ -100,27 +98,13 @@ public class Frame_AddDeal extends javax.swing.JFrame {
 
         jLabel4.setText("Date Début");
 
-        tf_datedebut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_datedebutActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Date Fin");
-
-        tf_datefin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_datefinActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Ancien Montant");
 
         jLabel7.setText("Nouveau Montant");
 
         jLabel8.setText("Quantité disponible");
-
-        jLabel9.setText("Nombre Réservation");
 
         tf_ancienmontant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,36 +219,29 @@ public class Frame_AddDeal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tf_ancienmontant, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(tf_datefin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                                    .addComponent(tf_datedebut, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(136, 136, 136)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(188, 188, 188)
+                                .addComponent(lb_controle_libelle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel10))
-                                .addGap(31, 31, 31))
+                                .addGap(6, 6, 6))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(188, 188, 188)
-                                        .addComponent(lb_controle_libelle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jdatedebut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                    .addComponent(jdatefin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_nouveaumontant)
                             .addComponent(tf_categorie)
                             .addComponent(cb_commercant, 0, 121, Short.MAX_VALUE)
-                            .addComponent(tf_nombrereservation)
                             .addComponent(tf_quantitedisponible))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -292,12 +269,13 @@ public class Frame_AddDeal extends javax.swing.JFrame {
                                         .addComponent(jlb_libelle))
                                     .addComponent(lb_controle_libelle, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(59, 59, 59)
+                                            .addComponent(jLabel2))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(59, 59, 59)
-                                        .addComponent(jLabel2))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(tf_nouveaumontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,41 +284,35 @@ public class Frame_AddDeal extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel8)
                                             .addComponent(tf_quantitedisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(43, 43, 43)
+                                        .addGap(63, 63, 63)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(tf_nombrereservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(11, 11, 11))))
+                                            .addComponent(jLabel3)
+                                            .addComponent(tf_categorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(tf_ancienmontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(lb_ancienmontant))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tf_datedebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(tf_categorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jdatedebut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(cb_commercant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tf_datefin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cb_commercant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jdatefin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(141, 141, 141))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bt_quitter)
                             .addComponent(bt_ajouterdeal))
@@ -397,14 +369,6 @@ public class Frame_AddDeal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tf_libelleActionPerformed
 
-    private void tf_datedebutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_datedebutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_datedebutActionPerformed
-
-    private void tf_datefinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_datefinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_datefinActionPerformed
-
     private void tf_ancienmontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ancienmontantActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ancienmontantActionPerformed
@@ -443,18 +407,20 @@ public class Frame_AddDeal extends javax.swing.JFrame {
         deal.setLibelle_deal(tf_libelle.getText());
         deal.setDescription(ta_description.getText());
         deal.setCategorie(tf_categorie.getText());
-        String d=new Date().toString();
-        deal.setDate_debut((tf_datedebut.getText()));
-        deal.setDate_fin((tf_datefin.getText()));
+        String dd=(String.valueOf(jdatedebut.getDate()));
+        deal.setDate_debut(dd);
+        String df=(String.valueOf(jdatefin.getDate()));
+        deal.setDate_fin(df);
         deal.setAncien_montant(Float.parseFloat(tf_ancienmontant.getText()));
         deal.setNouveau_montant(Float.parseFloat(tf_nouveaumontant.getText()));
         deal.setQuantite_disponible(Integer.parseInt(tf_quantitedisponible.getText()));
-        deal.setNombre_reservation(Integer.parseInt(tf_nombrereservation.getText()));
         deal.setCommercant(c);
         
         
         //Insérer le Deal
         dealdao.insertDeal(deal);
+        dealdao.Insert_Reserv_Deal();
+        
         
         
         //Afficher un message de confirmation
@@ -487,8 +453,8 @@ logs.setText("Admin "+a.getNom_admin());
         for(Commercant c : maliste){
             cb_commercant.addItem(c.getNom_commercant());
         }
-        tf_datedebut.setText(new Date().toString());
-        tf_datefin.setText(new Date().toString());
+        //tf_datedebut.setText(new Date().toString());
+        //tf_datefin.setText(new Date().toString());
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -584,10 +550,11 @@ AdminMenu f1 = new AdminMenu();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jdatedebut;
+    private com.toedter.calendar.JDateChooser jdatefin;
     private javax.swing.JLabel jlb_libelle;
     private javax.swing.JLabel lb_ancienmontant;
     private javax.swing.JLabel lb_controle_libelle;
@@ -595,10 +562,7 @@ AdminMenu f1 = new AdminMenu();
     private javax.swing.JTextArea ta_description;
     private javax.swing.JTextField tf_ancienmontant;
     private javax.swing.JTextField tf_categorie;
-    private javax.swing.JTextField tf_datedebut;
-    private javax.swing.JTextField tf_datefin;
     private javax.swing.JTextField tf_libelle;
-    private javax.swing.JTextField tf_nombrereservation;
     private javax.swing.JTextField tf_nouveaumontant;
     private javax.swing.JTextField tf_quantitedisponible;
     // End of variables declaration//GEN-END:variables

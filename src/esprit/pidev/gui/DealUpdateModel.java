@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class DealUpdateModel extends AbstractTableModel{
      List<Deal> listdeal = new ArrayList<Deal>();
-    String []header = {"id Deal","Libelle Deal","description","Categorie","Date Debut","Date Fin","Ancien Montant","Nouveau Montant","Quantite Disponible","Nombre Reservation","nom commercant"};
+    String []header = {"id Deal","Libelle Deal","description","Categorie","Date Debut","Date Fin","Ancien Montant","Nouveau Montant","Quantite Disponible","Nom commercant"};
   
     public DealUpdateModel() { 
         listdeal=new DealDAO().DisplayAllDeal();
@@ -47,9 +47,8 @@ public class DealUpdateModel extends AbstractTableModel{
                                 case 8:
                 return listdeal.get(rowIndex).getQuantite_disponible();
                                     case 9:
-                return listdeal.get(rowIndex).getNouveau_montant();
-                                        case 10:
                 return listdeal.get(rowIndex).getCommercant().getNom_commercant();
+                                        
             default:
                 return null;
         }
@@ -93,10 +92,6 @@ public void setValueAt(Object value, int row, int col)
     }
     else if (col==8) {
         deal.setQuantite_disponible(Integer.parseInt((String)value));
-         dealdao.updateDeal(deal);
-    }
-    else if (col==9) {
-        deal.setNombre_reservation(Integer.parseInt((String)value));
          dealdao.updateDeal(deal);
     }
     fireTableCellUpdated(row,col);

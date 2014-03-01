@@ -14,7 +14,6 @@ public class Deal {
     float ancien_montant;
     float nouveau_montant;
     int quantite_disponible;
-    int nombre_reservation;
     private Commercant commercant;
     //int idcommercant;
 
@@ -106,16 +105,5 @@ public class Deal {
     public void setQuantite_disponible(int quantite_disponible) {
         this.quantite_disponible = quantite_disponible;
     }
-
-    public int getNombre_reservation() {
-        return nombre_reservation;
-    }
-
-    public void setNombre_reservation(int nombre_reservation) {
-        this.nombre_reservation = nombre_reservation;
-    }
-    
-    
- 
     
 }
