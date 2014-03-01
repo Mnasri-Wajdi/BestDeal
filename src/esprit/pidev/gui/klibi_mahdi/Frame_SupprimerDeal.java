@@ -6,7 +6,6 @@ package esprit.pidev.gui.klibi_mahdi;
 
 import esprit.pidev.gui.klibi_mahdi.Frame_AddDeal;
 import esprit.pidev.gui.klibi_mahdi.DealDeleteModel;
-import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.administrateur;
@@ -197,20 +196,20 @@ public class Frame_SupprimerDeal extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         Frame_AddDeal frame_ADDDeal = new Frame_AddDeal();
-          this.setVisible(false);  
+       this.dispose(); 
         frame_ADDDeal.setVisible(true);//afficher l'interface
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Frame_UpdateDeal frame_UpdateDeal = new Frame_UpdateDeal();
-          this.setVisible(false);  
+        this.dispose();
         frame_UpdateDeal.setVisible(true);//afficher l'interface
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 AdminMenu f1 = new AdminMenu();
-                        this.setVisible(false);
+                        this.dispose();
                          f1.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -219,13 +218,13 @@ AdminMenu f1 = new AdminMenu();
         try {
             frame_aceuil.idlog=-1;
             frame_aceuil f4 = new frame_aceuil();
-            this.setVisible(false);  
+            this.dispose();  
                f4.setVisible(true);
                
             
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frame_SupprimerDeal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed

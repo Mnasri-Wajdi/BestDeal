@@ -4,7 +4,6 @@
  */
 package esprit.pidev.mail;
 
-import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.accueil.frame_aceuil;
@@ -290,13 +289,13 @@ CommercantDAO cdao = new CommercantDAO();
         try {
             frame_aceuil.idlog=-1;
             frame_aceuil f4 = new frame_aceuil();
-            this.setVisible(false);  
+           this.dispose(); 
                f4.setVisible(true);
                
             
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MailJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed

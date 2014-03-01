@@ -1,7 +1,6 @@
 
 package esprit.pidev.gui.klibi_mahdi;
 
-import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.dao.adminDAO;
@@ -466,22 +465,22 @@ logs.setText("Admin "+a.getNom_admin());
         
         // TODO add your handling code here:
         Frame_UpdateDeal frame_UpdateDeal = new Frame_UpdateDeal();
-          this.setVisible(false);  
-        frame_UpdateDeal.setVisible(true);//afficher l'interface
+this.dispose();
+frame_UpdateDeal.setVisible(true);//afficher l'interface
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          Frame_SupprimerDeal frame_SupprimerDeal = new Frame_SupprimerDeal();
-           this.setVisible(false);  
-       frame_SupprimerDeal.setVisible(true);
+this.dispose();   
+frame_SupprimerDeal.setVisible(true);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 AdminMenu f1 = new AdminMenu();
-                        this.setVisible(false);
+                        this.dispose();
                          f1.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -490,13 +489,13 @@ AdminMenu f1 = new AdminMenu();
         try {
             frame_aceuil.idlog=-1;
             frame_aceuil f4 = new frame_aceuil();
-            this.setVisible(false);  
+         this.dispose();
                f4.setVisible(true);
                
             
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frame_AddDeal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed

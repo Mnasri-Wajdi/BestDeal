@@ -5,6 +5,7 @@
 package esprit.pidev.dao;
 
 import esprit.pidev.entities.Commercant;
+import esprit.pidev.gui.ben_mabrouk_marwen.GererCommercant;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -93,17 +95,23 @@ public void updateCommercant(Commercant c){
             System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
             return null;
         }}
-     public void deleteCommercant(int num){
-
-          String requete = "delete from Commercant where id_commercant=?";
+  public void deleteCommercant(int num){
+         
+         
+         
+         
+         String requete = "delete from Commercant where id_commercant=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, num);
             ps.executeUpdate();
             System.out.println("Suppression effectuée avec succès");
+             JOptionPane.showMessageDialog(new GererCommercant(), "Commerçant supprimé avec succès");
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la suppression "+ex.getMessage());
+              JOptionPane.showMessageDialog(new GererCommercant(), "Supression impossible ! %/n Des deals sont liés à ce commerçant ","Erreur" ,JOptionPane.ERROR_MESSAGE);
+
         }
     
         }

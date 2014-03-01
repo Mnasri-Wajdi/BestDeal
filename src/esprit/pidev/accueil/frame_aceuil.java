@@ -8,7 +8,7 @@ package esprit.pidev.accueil;
 
 import esprit.pidev.shadow.AdminMenu;
 import esprit.pidev.gui.chalgoumi_marwen.frame_choice;
-import esprit.pidev.gui.ben_mabrouk_marwen.CommercantMenu;
+import esprit.pidev.shadow.CommercantMenu;
 import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.dao.adminDAO;

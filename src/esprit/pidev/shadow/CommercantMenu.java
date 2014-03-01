@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package esprit.pidev.gui.ben_mabrouk_marwen;
+package esprit.pidev.shadow;
 
-import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.mail.MailJframe;
@@ -108,7 +107,7 @@ public class CommercantMenu extends javax.swing.JFrame {
             
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommercantMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed

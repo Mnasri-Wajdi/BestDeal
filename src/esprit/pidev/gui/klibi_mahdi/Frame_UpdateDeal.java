@@ -7,7 +7,6 @@ package esprit.pidev.gui.klibi_mahdi;
 import esprit.pidev.gui.klibi_mahdi.Frame_SupprimerDeal;
 import esprit.pidev.gui.klibi_mahdi.Frame_AddDeal;
 import esprit.pidev.gui.klibi_mahdi.DealUpdateModel;
-import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.administrateur;
@@ -172,21 +171,21 @@ public class Frame_UpdateDeal extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         Frame_AddDeal frame_ADDDeal = new Frame_AddDeal();
-          this.setVisible(false);  
+     this.dispose();  
         frame_ADDDeal.setVisible(true);//afficher l'interface
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Frame_SupprimerDeal frame_SupprimerDeal = new Frame_SupprimerDeal();
-          this.setVisible(false);  
+          this.dispose();
         frame_SupprimerDeal.setVisible(true);//afficher l'interface
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 AdminMenu f1 = new AdminMenu();
-                        this.setVisible(false);
-                         f1.setVisible(true);
+this.dispose();
+f1.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -194,13 +193,13 @@ AdminMenu f1 = new AdminMenu();
         try {
             frame_aceuil.idlog=-1;
             frame_aceuil f4 = new frame_aceuil();
-            this.setVisible(false);  
+           this.dispose();  
                f4.setVisible(true);
                
             
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frame_UpdateDeal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed

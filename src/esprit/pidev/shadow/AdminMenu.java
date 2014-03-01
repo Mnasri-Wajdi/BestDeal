@@ -4,16 +4,14 @@
  */
 package esprit.pidev.shadow;
 
-import esprit.pidev.gui.ben_mabrouk_marwen.UpdateCommercant;
-import esprit.pidev.gui.ben_mabrouk_marwen.SupprimerCommercant;
-import esprit.pidev.gui.klibi_mahdi.Frame_UpdateDeal;
-import esprit.pidev.gui.klibi_mahdi.Frame_SupprimerDeal;
-import esprit.pidev.gui.klibi_mahdi.Frame_AddDeal;
-import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
+import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.administrateur;
+import esprit.pidev.gui.ben_mabrouk_marwen.GererCommercant;
+import esprit.pidev.gui.klibi_mahdi.Frame_AddDeal;
+import esprit.pidev.gui.klibi_mahdi.Frame_SupprimerDeal;
+import esprit.pidev.gui.klibi_mahdi.Frame_UpdateDeal;
 import esprit.pidev.mail.MailJframeAdmin;
-import esprit.pidev.accueil.frame_aceuil;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,9 +38,7 @@ public class AdminMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -57,24 +53,10 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ajouter commerçant");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Modfier commerçant");
+        jButton2.setText("Gérer  commerçant");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Supprimer commerçant");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -123,12 +105,8 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(jButton8)))
+                        .addGap(0, 201, Short.MAX_VALUE)
+                        .addComponent(jButton8)
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,9 +134,7 @@ public class AdminMenu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,9 +142,7 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -189,64 +163,55 @@ logs.setText("Admin "+a.getNom_admin());
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-try {
+        try {     
             // TODO add your handling code here:
 
          
                     frame_aceuil.idlog=-1;       
-                this.setVisible(false);  
+                this.dispose();
              new frame_aceuil().setVisible(true);
+         
+        // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateCommercant.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-                   
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
- AddCommercant f1 = new AddCommercant();
-        this.setVisible(false);
-        f1.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-UpdateCommercant f3 = new UpdateCommercant();
-        this.setVisible(false);
+GererCommercant f3 = new GererCommercant();
+    
+        this.dispose();
         f3.setVisible(true);
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-SupprimerCommercant f2 = new SupprimerCommercant();
-        this.setVisible(false);
-        f2.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
  Frame_UpdateDeal frame_UpdateDeal = new Frame_UpdateDeal();
-  this.setVisible(false);
+  this.dispose();
         frame_UpdateDeal.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
 Frame_SupprimerDeal frame_SupprimerDeal = new Frame_SupprimerDeal();
-  this.setVisible(false);
+  this.dispose();
        frame_SupprimerDeal.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
           Frame_AddDeal frame_ADDDeal = new Frame_AddDeal();
-           this.setVisible(false);
+            this.dispose();
         frame_ADDDeal.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
 MailJframeAdmin f1= new MailJframeAdmin();
- this.setVisible(false);  
+  this.dispose();
       f1.setVisible(true);
 
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -286,9 +251,7 @@ MailJframeAdmin f1= new MailJframeAdmin();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
