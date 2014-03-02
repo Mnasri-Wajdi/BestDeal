@@ -4,8 +4,11 @@
  */
 package esprit.pidev.gui.tonniche_syrine;
 
+import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.dao.ReservationDAO;
+import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Notification;
 import esprit.pidev.entities.Reservation;
 import esprit.pidev.entities.Reservation2;
@@ -41,6 +44,7 @@ public class AfficherDeals extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_client_co = new javax.swing.JTextField();
+        logs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 204));
@@ -79,8 +83,6 @@ public class AfficherDeals extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 102));
         jLabel1.setText("Liste deals");
 
-        tf_client_co.setText("1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,17 +100,25 @@ public class AfficherDeals extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151)
                         .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -121,12 +131,18 @@ public class AfficherDeals extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // syrine
-        ReservationDAO rdao = new ReservationDAO();
+        
+        ClientDAO cldao = new ClientDAO();
+        Client c=cldao.findClientById(frame_aceuil.idlog);
+        
+        
+    ReservationDAO rdao = new ReservationDAO();
     Reservation reservation = new Reservation();
     reservation.setPrix((Double.valueOf(table_deals.getValueAt(table_deals.getSelectedRow(),7).toString())));
-  reservation.setId_deal((int)table_deals.getValueAt(table_deals.getSelectedRow(),0));
+    reservation.setId_deal((int)table_deals.getValueAt(table_deals.getSelectedRow(),0));
     reservation.setQuantite(1);
-    reservation.setId_client(1);
+    reservation.setId_client(c.getId_client());
+    
     String d = new Date().toString();
     reservation.setDate_reservation(d);
     rdao.InsertReservation(reservation) ;
@@ -139,7 +155,7 @@ public class AfficherDeals extends javax.swing.JFrame {
     reservation2.setPrix2((Double.valueOf(table_deals.getValueAt(table_deals.getSelectedRow(),7).toString())));
     reservation2.setId_deal2((int)table_deals.getValueAt(table_deals.getSelectedRow(),0));
     reservation2.setQuantite2(1);
-    reservation2.setId_client2(1);
+    reservation2.setId_client2(c.getId_client());
     String k = new Date().toString();
     reservation2.setDate_reservation2(k);
     resdao.InsertReservation2(reservation2) ;
@@ -149,7 +165,8 @@ public class AfficherDeals extends javax.swing.JFrame {
     
     Notification n=new Notification();
     DealDAO deal_do =new DealDAO();
-    deal_do.DisplayNotifDeal(identificateur);
+    
+    deal_do.DisplayNotifDeal(frame_aceuil.idlog);
     
     
          JOptionPane.showMessageDialog(this, "Ajout effectué avec succès");
@@ -164,6 +181,12 @@ public class AfficherDeals extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
+        ClientDAO cldao = new ClientDAO();
+        Client c=cldao.findClientById(frame_aceuil.idlog);
+        logs.setText("Bienvenue "+c.getNom());
+        tf_client_co.setText(Integer.toString(frame_aceuil.idlog));
+        
+ 
         getContentPane().setBackground(Color.WHITE);
     }//GEN-LAST:event_formWindowOpened
 
@@ -206,6 +229,7 @@ public class AfficherDeals extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logs;
     private javax.swing.JTable table_deals;
     private javax.swing.JTextField tf_client_co;
     // End of variables declaration//GEN-END:variables

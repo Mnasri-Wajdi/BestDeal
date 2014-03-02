@@ -335,7 +335,7 @@ public List<Notification> DisplayAllNot(int id) {
             return listeNot;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des notes"+ex.getMessage());
+            System.out.println("erreur lors du chargement des notification"+ex.getMessage());
             return null;
         } 
         
@@ -364,7 +364,7 @@ public List<Notification> DisplayAllNot(int id) {
        public void DisplayNotifDeal(int id) {
         
        
-       System.out.println(id);
+       
        String nom_deal="";
        String description_deal="";
        String requete = "select id_deal2,date_reservation2 from reservation2 where id_client2="+id;
@@ -443,7 +443,7 @@ public List<Notification> DisplayAllNot(int id) {
 
 
             ps.executeUpdate();
-            System.out.println("Ajout effectuée avec succès");
+            System.out.println("Ajout dans res 2 effectuée avec succès");
        } catch (SQLException ex) {
          
             System.out.println("erreur lors de l'insertion "+ex.getMessage());
@@ -577,7 +577,7 @@ public List<Notification> DisplayAllNot(int id) {
         }
     }
         
-        
+      // public void Payer  
         
     
     

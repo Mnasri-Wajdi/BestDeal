@@ -17,9 +17,9 @@ public class TableModelReservation extends AbstractTableModel{
      List<Reservation> listeReservation = new ArrayList<Reservation>();
      String []header = {"Numero","Date","Prix","Quantité"};
 
-    public TableModelReservation() {
+    public TableModelReservation(int id) {
         
-        listeReservation= new ReservationDAO().DisplayAllReservations();
+        listeReservation= new ReservationDAO().DisplayAllReservations(id);
     }
      
     // @Override

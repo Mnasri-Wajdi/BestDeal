@@ -89,12 +89,12 @@ public class ReservationDAO {
         }
          }
     }
-    public List<Reservation> DisplayAllReservations (){
+    public List<Reservation> DisplayAllReservations (int id){
 
 
         List<Reservation> listeReservation = new ArrayList<Reservation>();
 
-        String requete = "select * from reservation";
+        String requete = "select * from reservation where id_client="+id;
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
@@ -114,7 +114,7 @@ public class ReservationDAO {
             return listeReservation;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
+            System.out.println("erreur lors du chargement des reservations "+ex.getMessage());
             return null;
         }
     }

@@ -4,7 +4,10 @@
  */
 package esprit.pidev.gui.mnasri_wajdi;
 
+import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
+import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Reclamation;
 import javax.swing.JOptionPane;
 
@@ -39,9 +42,15 @@ public class Reclamer_pb extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         l_client = new javax.swing.JTextField();
         verif_pb = new javax.swing.JLabel();
+        logs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pb.setColumns(20);
         pb.setRows(5);
@@ -60,7 +69,6 @@ public class Reclamer_pb extends javax.swing.JFrame {
 
         jLabel3.setText("client ");
 
-        l_client.setText("3");
         l_client.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 l_clientActionPerformed(evt);
@@ -90,20 +98,27 @@ public class Reclamer_pb extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel3)))
+                        .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(verif_pb))
@@ -111,7 +126,7 @@ public class Reclamer_pb extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btm_reclamer)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,6 +160,17 @@ public class Reclamer_pb extends javax.swing.JFrame {
     private void l_clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_l_clientActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_l_clientActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        ClientDAO cldao = new ClientDAO();
+   Client c=cldao.findClientById(frame_aceuil.idlog);
+    logs.setText("Bienvenue "+c.getNom());
+        l_client.setText(Integer.toString(c.getId_client()));
+        
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -187,6 +213,7 @@ public class Reclamer_pb extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField l_client;
+    private javax.swing.JLabel logs;
     private javax.swing.JTextArea pb;
     private javax.swing.JLabel verif_pb;
     // End of variables declaration//GEN-END:variables

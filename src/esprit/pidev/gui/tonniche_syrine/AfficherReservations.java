@@ -4,6 +4,9 @@
  */
 package esprit.pidev.gui.tonniche_syrine;
 
+import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.dao.ClientDAO;
+import esprit.pidev.entities.Client;
 import java.awt.Color;
 
 /**
@@ -29,8 +32,11 @@ public class AfficherReservations extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        table_panier = new javax.swing.JTable();
+        javax.swing.JTable table_panier = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btm_payer = new javax.swing.JButton();
+        tf_client_co = new javax.swing.JTextField();
+        logs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -40,7 +46,7 @@ public class AfficherReservations extends javax.swing.JFrame {
         });
 
         table_panier.setForeground(new java.awt.Color(204, 0, 102));
-        table_panier.setModel(new TableModelReservation());
+        table_panier.setModel(new TableModelReservation(frame_aceuil.idlog));
         table_panier.setGridColor(new java.awt.Color(153, 0, 153));
         table_panier.setSelectionBackground(new java.awt.Color(0, 102, 102));
         jScrollPane2.setViewportView(table_panier);
@@ -48,6 +54,13 @@ public class AfficherReservations extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 3, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 102));
         jLabel1.setText("Mon Panier");
+
+        btm_payer.setText("Payer");
+        btm_payer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btm_payerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,16 +74,32 @@ public class AfficherReservations extends javax.swing.JFrame {
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(40, 40, 40)
+                        .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btm_payer, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(18, 18, 18)
+                .addComponent(btm_payer)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -78,8 +107,23 @@ public class AfficherReservations extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        
+   ClientDAO cldao = new ClientDAO();
+   Client c=cldao.findClientById(frame_aceuil.idlog);
+    logs.setText("Bienvenue "+c.getNom());
+        tf_client_co.setText(Integer.toString(frame_aceuil.idlog));
+        
         getContentPane().setBackground(Color.WHITE);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btm_payerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_payerActionPerformed
+       
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btm_payerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,8 +160,10 @@ public class AfficherReservations extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btm_payer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable table_panier;
+    private javax.swing.JLabel logs;
+    private javax.swing.JTextField tf_client_co;
     // End of variables declaration//GEN-END:variables
 }
