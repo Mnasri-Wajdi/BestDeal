@@ -4,12 +4,15 @@
  */
 package esprit.pidev.dao;
 
+import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.entities.Deal;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.entities.Notification;
 import esprit.pidev.entities.Reclamation;
 import esprit.pidev.entities.Reservation2;
+import esprit.pidev.entities.Reservation_Stock;
 import esprit.pidev.entities.Verif;
+import esprit.pidev.gui.tonniche_syrine.TableModelReservation;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +21,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JTable;
 
 
 public class DealDAO {
@@ -577,7 +581,117 @@ public List<Notification> DisplayAllNot(int id) {
         }
     }
         
-      // public void Payer  
+       public void Payer ( int a) {
+           
+           
+           String requete = "select id_deal from reservation where id_client="+a;
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            
+            while(resultat.next()){
+                
+                
+        //Quantité disponible dans la table deal -1 
+                
+                       
+                String requete2 = "select quantite_disponible from  deal where id_deal="+resultat.getInt(1);
+        try {
+           Statement statement2 = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat2 = statement2.executeQuery(requete2);
+            while(resultat2.next()){
+                Deal deaal=new Deal();
+              
+            deaal.setQuantite_disponible(resultat2.getInt(1));
+          
+ 
+        
+        String requete3 = "update deal set quantite_disponible=? WHERE id_deal=?" ;
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete3);
+            ps.setInt(1,deaal.getQuantite_disponible()-1);
+            ps.setInt(2, resultat.getInt(1));
+            ps.executeUpdate();
+            System.out.println("Nombre quantité effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+        
+            }
+            
+            
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement "+ex.getMessage());
+          
+        }
+                
+                
+               
+                
+                
+       // nbr de reserv  de deal dans la table reservation_stock +1
+                String requete4 = "select nbr_reservation from  reservation_stock where id_deal="+resultat.getInt(1);
+        try {
+           Statement statement2 = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat2 = statement2.executeQuery(requete4);
+            while(resultat2.next()){
+                Reservation_Stock res=new Reservation_Stock();
+              
+            res.setNbr_reservation(resultat2.getInt(1));
+          
+ 
+        
+        String requete5 = "update reservation_stock set nbr_reservation=? WHERE id_deal=?" ;
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete5);
+            ps.setInt(1,res.getNbr_reservation()+1);
+            ps.setInt(2, resultat.getInt(1));
+            ps.executeUpdate();
+            System.out.println("Nombre réservation effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+        
+            }
+            
+            
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement "+ex.getMessage());
+          
+        }
+        
+       }
+        
+            
+                } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement "+ex.getMessage());}
+         
+       
+            
+            //supp la liste réservé de le client courant
+            
+            String requete6 = "delete from reservation where id_client="+a;
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete6);
+            ps.executeUpdate();
+            System.out.println("Reservation supprimée");
+            
+        } catch (SQLException exx) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la suppression "+exx.getMessage());
+        }
+
+       
+       
+       }
         
     
     

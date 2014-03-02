@@ -6,8 +6,11 @@ package esprit.pidev.gui.tonniche_syrine;
 
 import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.dao.ClientDAO;
+import esprit.pidev.dao.DealDAO;
 import esprit.pidev.entities.Client;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,6 +23,7 @@ public class AfficherReservations extends javax.swing.JFrame {
      */
     public AfficherReservations() {
         initComponents();
+        
     }
 
     /**
@@ -49,6 +53,11 @@ public class AfficherReservations extends javax.swing.JFrame {
         table_panier.setModel(new TableModelReservation(frame_aceuil.idlog));
         table_panier.setGridColor(new java.awt.Color(153, 0, 153));
         table_panier.setSelectionBackground(new java.awt.Color(0, 102, 102));
+        table_panier.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                table_panierMouseMoved(evt);
+            }
+        });
         jScrollPane2.setViewportView(table_panier);
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 3, 48)); // NOI18N
@@ -118,12 +127,19 @@ public class AfficherReservations extends javax.swing.JFrame {
     private void btm_payerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_payerActionPerformed
        
         
+        DealDAO deal__dao =new DealDAO();
+         deal__dao.Payer(Integer.parseInt(tf_client_co.getText()));
         
-        
-        
-        
+         
+       
+         JOptionPane.showMessageDialog(this, "Payement effectué avec succès");
+         this.dispose();
         
     }//GEN-LAST:event_btm_payerActionPerformed
+
+    private void table_panierMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_panierMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_table_panierMouseMoved
 
     /**
      * @param args the command line arguments
