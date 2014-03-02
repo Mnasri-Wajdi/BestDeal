@@ -110,7 +110,7 @@ public void updateCommercant(Commercant c){
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la suppression "+ex.getMessage());
-              JOptionPane.showMessageDialog(new GererCommercant(), "Supression impossible ! %/n Des deals sont liés à ce commerçant ","Erreur" ,JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog(new GererCommercant(), "Suppression impossible ! \nDes deals sont liés à ce commerçant ","Erreur" ,JOptionPane.ERROR_MESSAGE);
 
         }
     

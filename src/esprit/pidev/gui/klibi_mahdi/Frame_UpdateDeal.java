@@ -12,10 +12,22 @@ import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.administrateur;
 import esprit.pidev.shadow.AdminMenu;
 import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.util.MyConnection;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 public class Frame_UpdateDeal extends javax.swing.JFrame {
 
@@ -44,6 +56,7 @@ public class Frame_UpdateDeal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         logs = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -115,6 +128,13 @@ public class Frame_UpdateDeal extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("To pdf");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +148,10 @@ public class Frame_UpdateDeal extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addComponent(jButton3)))
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jButton5)))
                 .addGap(65, 65, 65))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -155,6 +178,9 @@ public class Frame_UpdateDeal extends javax.swing.JFrame {
                         .addGap(40, 40, 40)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
@@ -211,6 +237,31 @@ adminDAO adao = new adminDAO();
 logs.setText("Admin "+a.getNom_admin());
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Connection connection;
+        try {
+            // - Connexion à la base
+            connection= MyConnection.getInstance();
+            // - Chargement et compilation du rapport (charger le fichier jrxml déjà généré)
+            JasperDesign jasperDesign = JRXmlLoader.load("C:\\pdf\\liste_deal.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            // - Paramètres à envoyer au rapport
+            Map  parameters = new HashMap();
+            parameters.put("Titre", "Titre");
+            // - Execution du rapport
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
+            // - Création du rapport au format PDF
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\pdf\\liste_deal.pdf");
+            JOptionPane.showMessageDialog(this,"Generation pdf terminé");
+            System.out.println("success");
+        }
+
+        catch (JRException e) {
+            System.out.println("erreur de compilation"+ e.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +301,7 @@ logs.setText("Admin "+a.getNom_admin());
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

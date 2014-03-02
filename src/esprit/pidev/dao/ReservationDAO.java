@@ -104,7 +104,7 @@ public class ReservationDAO {
                 reservation.setNumero_reservation(resultat.getInt(1));
                  reservation.setDate_reservation(resultat.getString(2));
                  resultat.getInt(3);
-                 resultat.getInt(4);
+             reservation.setId_deal(resultat.getInt(4));
                  reservation.setQuantite(resultat.getInt(5));
                  reservation.setPrix(resultat.getDouble(6));
                 

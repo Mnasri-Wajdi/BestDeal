@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModelReservation extends AbstractTableModel{
      List<Reservation> listeReservation = new ArrayList<Reservation>();
-     String []header = {"Numero","Date","Prix","Quantité"};
+     String []header = {"Numero","Nom Deal","Date","Prix","Quantité"};
 
     public TableModelReservation(int id) {
         
@@ -35,14 +35,18 @@ public class TableModelReservation extends AbstractTableModel{
 
    // @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex) {
+       switch (columnIndex) {
             case 0:
                 return listeReservation.get(rowIndex).getNumero_reservation();
-            case 1:
+            case 1: 
+        
+               return listeReservation.get(rowIndex).getId_deal();
+
+                case 2:
                 return listeReservation.get(rowIndex).getDate_reservation();
-            case 2:
+                case 3:
                 return listeReservation.get(rowIndex).getPrix();
-           case 3:
+           case 4:
               return listeReservation.get(rowIndex).getQuantite();
             default:
                 return null;
