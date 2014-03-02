@@ -17,7 +17,7 @@ import javax.swing.JTable;
  * @author syrine
  */
 public class AfficherReservations extends javax.swing.JFrame {
-
+public int k;
     /**
      * Creates new form AfficherReservation
      */
@@ -126,15 +126,18 @@ public class AfficherReservations extends javax.swing.JFrame {
 
     private void btm_payerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_payerActionPerformed
        
+        int k=0;
         
         DealDAO deal__dao =new DealDAO();
-         deal__dao.Payer(Integer.parseInt(tf_client_co.getText()));
+         k=deal__dao.Payer(Integer.parseInt(tf_client_co.getText()));
         
-         
-       
-         JOptionPane.showMessageDialog(this, "Payement effectué avec succès");
+        if (k==1) {
+            
+            JOptionPane.showMessageDialog(this, "Payement effectué avec succès");
          this.dispose();
-        
+        }
+         else
+        JOptionPane.showMessageDialog(this, "Payement Impposible la liste de réservations est vide ");
     }//GEN-LAST:event_btm_payerActionPerformed
 
     private void table_panierMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_panierMouseMoved

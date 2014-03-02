@@ -25,6 +25,7 @@ import javax.swing.JTable;
 
 
 public class DealDAO {
+    public int k;
  public void insertDeal(Deal d){
    
       // CommercantDAO commercantdao=new CommercantDAO();
@@ -174,7 +175,8 @@ public class DealDAO {
                 deal.setDate_fin(resultat.getString(6));
                 deal.setAncien_montant(resultat.getFloat(7)) ;       
                 deal.setNouveau_montant(resultat.getFloat(8));
-               		
+               	deal.setQuantite_disponible(resultat.getInt(9));
+                
                 listeDeal.add(deal);
             }
             return listeDeal;
@@ -581,8 +583,9 @@ public List<Notification> DisplayAllNot(int id) {
         }
     }
         
-       public void Payer ( int a) {
+       public int Payer ( int a) {
            
+            int k = 0;
            
            String requete = "select id_deal from reservation where id_client="+a;
         try {
@@ -592,6 +595,8 @@ public List<Notification> DisplayAllNot(int id) {
             
             while(resultat.next()){
                 
+             // pour tester si  il y a des éléments dans la liste de reservation pour le client courant
+                if(resultat.getInt(1)>0){ k=1;}
                 
         //Quantité disponible dans la table deal -1 
                 
@@ -690,7 +695,11 @@ public List<Notification> DisplayAllNot(int id) {
         }
 
        
-       
+        
+        
+        
+        
+       return k;
        }
         
     

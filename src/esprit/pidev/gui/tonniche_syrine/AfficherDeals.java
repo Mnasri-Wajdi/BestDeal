@@ -145,6 +145,13 @@ public class AfficherDeals extends javax.swing.JFrame {
     
     String d = new Date().toString();
     reservation.setDate_reservation(d);
+    
+    double v=(Double.valueOf(table_deals.getValueAt(table_deals.getSelectedRow(),8).toString()));
+    v=(int)v;
+        if (v>0) {
+            
+        
+    
     rdao.InsertReservation(reservation) ;
         
         //Mnasri Wajdi
@@ -170,7 +177,9 @@ public class AfficherDeals extends javax.swing.JFrame {
     
     
          JOptionPane.showMessageDialog(this, "Ajout effectué avec succès");
-        
+        }
+        else
+        JOptionPane.showMessageDialog(this, "Deal déja épuisé");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
