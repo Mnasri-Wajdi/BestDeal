@@ -8,6 +8,7 @@ import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.entities.Client;
+import esprit.pidev.shadow.ClientMenu;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -41,6 +42,7 @@ public int k;
         btm_payer = new javax.swing.JButton();
         tf_client_co = new javax.swing.JTextField();
         logs = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,6 +73,13 @@ public int k;
             }
         });
 
+        jButton1.setText("Accueil");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,7 +88,7 @@ public int k;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,34 +97,40 @@ public int k;
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btm_payer, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btm_payer, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btm_payer)
-                .addGap(30, 30, 30))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btm_payer))
+                .addGap(99, 99, 99))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       
+
+        this.setLocationRelativeTo(null);
    ClientDAO cldao = new ClientDAO();
    Client c=cldao.findClientById(frame_aceuil.idlog);
     logs.setText("Bienvenue "+c.getNom());
@@ -124,25 +139,34 @@ public int k;
         getContentPane().setBackground(Color.WHITE);
     }//GEN-LAST:event_formWindowOpened
 
-    private void btm_payerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_payerActionPerformed
-       
-        int k=0;
-        
-        DealDAO deal__dao =new DealDAO();
-         k=deal__dao.Payer(Integer.parseInt(tf_client_co.getText()));
-        
-        if (k==1) {
-            
-            JOptionPane.showMessageDialog(this, "Payement effectué avec succès");
-         this.dispose();
-        }
-         else
-        JOptionPane.showMessageDialog(this, "Payement Impposible la liste de réservations est vide ");
-    }//GEN-LAST:event_btm_payerActionPerformed
-
     private void table_panierMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_panierMouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_table_panierMouseMoved
+
+    private void btm_payerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_payerActionPerformed
+
+        int k=0;
+
+        DealDAO deal__dao =new DealDAO();
+        k=deal__dao.Payer(Integer.parseInt(tf_client_co.getText()));
+
+        if (k==1) {
+
+            JOptionPane.showMessageDialog(this, "Payement effectué avec succès");
+            this.dispose();
+        }
+        else
+        JOptionPane.showMessageDialog(this, "Payement Impposible la liste de réservations est vide ");
+    }//GEN-LAST:event_btm_payerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+            this.dispose();
+            new ClientMenu().setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +204,7 @@ public int k;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btm_payer;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logs;

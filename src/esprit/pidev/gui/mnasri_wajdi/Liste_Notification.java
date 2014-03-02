@@ -9,6 +9,7 @@ import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Notification;
+import esprit.pidev.shadow.ClientMenu;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,6 +42,7 @@ public static  int n;
         javax.swing.JTable jTable1 = new javax.swing.JTable();
         btm_vu = new javax.swing.JToggleButton();
         logs = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 102));
@@ -70,14 +72,23 @@ public static  int n;
             }
         });
 
+        jButton1.setText("Accueil");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(btm_vu)
+                .addGap(195, 195, 195)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
@@ -102,8 +113,10 @@ public static  int n;
                     .addComponent(logs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(btm_vu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btm_vu)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -118,12 +131,15 @@ public static  int n;
         n.setId_client(Integer.parseInt(tf_idClient.getText()));
             deal_dao.UpdateVu(n);
             this.dispose();
+            new ClientMenu().setVisible(true);
            
         
     }//GEN-LAST:event_btm_vuActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
   
+        this.setLocationRelativeTo(null);
+        
         ClientDAO cldao = new ClientDAO();
    Client c=cldao.findClientById(frame_aceuil.idlog);
     logs.setText("Bienvenue "+c.getNom());
@@ -134,6 +150,13 @@ public static  int n;
     private void tf_idClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_idClientActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_idClientActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+            this.dispose();
+            new ClientMenu().setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +196,7 @@ public static  int n;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btm_vu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
