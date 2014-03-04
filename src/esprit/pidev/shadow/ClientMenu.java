@@ -230,7 +230,8 @@ public class ClientMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+       
+        
         this.setLocationRelativeTo(null);
         ClientDAO cldao = new ClientDAO();
         Client c=cldao.findClientById(frame_aceuil.idlog);

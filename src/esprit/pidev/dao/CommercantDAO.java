@@ -22,6 +22,36 @@ import javax.swing.JOptionPane;
 //hfff
 public class CommercantDAO {
     
+    public Commercant findCommercantByEmail(String email)
+            
+    {
+    
+    
+    Commercant commercant = new Commercant();
+     String requete = "select * from commercant where email=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, email);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                commercant.setId_commercant(resultat.getInt(1));
+                commercant.setNom_commercant(resultat.getString(2));
+                commercant.setDescription(resultat.getString(3));
+                commercant.setAdresse(resultat.getString(4));
+                commercant.setEmail(resultat.getString(5));
+                commercant.setTel(resultat.getInt(6));
+                commercant.setLogin(resultat.getString(7));
+                commercant.setPassword(resultat.getString(8));
+            }
+            return commercant;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Commercant introuvable "+ex.getMessage());
+            return null;
+        }
+    }
     
     public List<Commercant> CommercantChart()
     {

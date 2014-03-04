@@ -4,6 +4,7 @@ import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import chrriis.dj.nativeswing.swtimpl.components.WebBrowserAdapter;
 import chrriis.dj.nativeswing.swtimpl.components.WebBrowserNavigationEvent;
+import esprit.pidev.accueil.frame_aceuil;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Window;
@@ -11,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.StringReader;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,8 +32,8 @@ import org.eclipse.swt.widgets.*;
 
 public class Main {
 
-public static String API_KEY = "213534595512102";
-public static String SECRET = "88b1a70a10ff3a6a704c6d8cf2bf655f";
+public static String API_KEY = "253691724808920";
+public static String SECRET = "4503e2bcf15a2cf2e04d63a8c20c8eb9";
 
   public static String firstRequest = "https://graph.facebook.com/oauth/authorize?"
   + "client_id="
@@ -43,7 +47,8 @@ public static String SECRET = "88b1a70a10ff3a6a704c6d8cf2bf655f";
   + "&redirect_uri=http://www.facebook.com/connect/login_success.html&"
   + "client_secret=" + SECRET + "&code=";
 
-  public static String access_token = "CAADCNWW2dyYBAJHI1OMaZBlZCXqn6W8B8xAMJSlPE2M7mvSXmBspXn4vAB4pbr2YGs8XTNDDjDyrw6O9q1ZCOT6xTWKyC2pfZAqGWsJ6TrFanuRZBBkCYDNBucD84agkaCA8C3JuuCWyk0ZAgUoUZBmoGygGrjZAabtBxkF4p14yIJHFc8rMeg7jHGAB0XuGZAkAZD";
+  public static String access_token = "";
+  
   public static boolean firstRequestDone = false;
   public static boolean secondRequestDone = false;
     /**
@@ -56,85 +61,25 @@ public static String SECRET = "88b1a70a10ff3a6a704c6d8cf2bf655f";
 
                 NativeInterface.open();
                 NativeInterface.initialize();
-                FacebookTestClient testClient = new FacebookTestClient();
+                //FacebookTestClient testClient = new FacebookTestClient();
 
-                testClient.setLoginListener(new ActionListener() {
-                    
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 1");
-                        final JFrame loginFrame = new JFrame();
-                        JPanel webBrowserPanel = new JPanel(new BorderLayout());
-                        // this is the JWebBrowser i mentioned earlier
-                        final JWebBrowser webBrowser = new JWebBrowser();
-                        // You can set this fields to false, or even let them activated
-                        webBrowser.setMenuBarVisible(false);
-                        webBrowser.setButtonBarVisible(false);
-                        webBrowser.setLocationBarVisible(false);
-                        final String fb_url = "http://www.facebook.com/";
-                        webBrowser.navigate(fb_url);
+                
+              
+               // testClient.setgetPermissionsForAppListener(new ActionListener() {
 
-                        // Here we add to our JWebBrowser an Adapter and override the 
-                        // locationChanging() method. Here we can check, if we are 
-                        // changing the location
-                        // in our case the String fb_url, then this JWebBrowser can be 
-                        // disposed.
-                        // The Timer is set for 2 seconds, so we can still see if the 
-                        // login was successfull or not.
-                        webBrowser.addWebBrowserListener(new WebBrowserAdapter() {
-                            @Override
-                            public void locationChanging(WebBrowserNavigationEvent e) {
-                                super.locationChanging(e);
-                                System.out.println(e.getNewResourceLocation());
-
-                                if (!e.getNewResourceLocation().equals(fb_url)) {
-                                    Timer timer = new Timer(5000, new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent arg0) {
-                                            //loginFrame.dispose();
-                                        }
-                                    });
-                                    timer.start();
-                                }
-                            }
-                        });
-                        webBrowserPanel.add(webBrowser, BorderLayout.CENTER);
-                        loginFrame.add(webBrowserPanel);
-                        loginFrame.setSize(400, 500);
-                        loginFrame.setVisible(true);
-                    }
-                });
-                 testClient.setretrieveUserListener(new ActionListener() {
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 3");
-                        GraphReaderExample.main(args);
-                    }
-                 });
-                testClient.setgetAccessTokenListener(new ActionListener() {
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println(" Bouton 4"); 
-                       //JFrame parent = new JFrame();
-    //JOptionPane.showMessageDialog(parent,  access_token);
-                        System.out.println("access_token est: "+access_token);
-                      
-                    }
-                 });
-                testClient.setgetPermissionsForAppListener(new ActionListener() {
-
-  @Override
-  public void actionPerformed(ActionEvent e) {
-      System.out.println(" Bouton 2");
+  //@Override
+  //public void actionPerformed(ActionEvent e) {
+     
     final JFrame authFrame = new JFrame();
+
     // Create the JWebBrowser and add the WebBrowserAdapter
     JPanel webBrowserPanel = new JPanel(new BorderLayout());
     final JWebBrowser webBrowser = new JWebBrowser();
     webBrowser.setMenuBarVisible(false);
     webBrowser.setButtonBarVisible(false);
     webBrowser.setLocationBarVisible(false);
+                
+    
     webBrowser.navigate(firstRequest);
     webBrowser.addWebBrowserListener(new WebBrowserAdapter() {
       @Override
@@ -165,14 +110,19 @@ public static String SECRET = "88b1a70a10ff3a6a704c6d8cf2bf655f";
             new HTMLEditorKit.ParserCallback() {
                 @Override
               public void handleText(char[] data,int pos) {
+                     authFrame.setVisible(false);
                 System.out.println(data);
                 // because there is only one line with the access_token 
                 // in the html content you can parse it.
                 String string = new String(data);
                 String[] temp1 = string.split("&");
                 String[] temp2 = temp1[0].split("=");
+                 
                     System.out.println("access tocken="+temp2);
+                  
                 access_token = temp2[1];
+              
+                 GraphReaderExample.main(args);
               }
             };
             try {
@@ -182,7 +132,8 @@ public static String SECRET = "88b1a70a10ff3a6a704c6d8cf2bf655f";
               e1.printStackTrace();
             }
             // After everything is done, you can dispose the jframe
-            //authFrame.dispose();      
+            authFrame.dispose();
+            
           }
         }
       }
@@ -191,8 +142,10 @@ public static String SECRET = "88b1a70a10ff3a6a704c6d8cf2bf655f";
     authFrame.add(webBrowserPanel);
     authFrame.setSize(400, 500);
     authFrame.setVisible(true);
-  }
-});
+    
+    
+  //}
+//});
                   
             }
         });

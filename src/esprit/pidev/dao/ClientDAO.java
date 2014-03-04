@@ -23,6 +23,47 @@ public class ClientDAO {
     
      //marwen chalghoumi//  Le client fait une inscription pour la première fois//
     
+    
+    public Client findClientByEmail(String email)
+    {
+        Client client = new Client();
+        
+      
+
+     String requete = "select * from Client where email=?";
+        try {
+            
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1,email);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                client.setId_client(resultat.getInt(1));
+                client.setLogin(resultat.getString(2));
+                client.setPassword(resultat.getString(3));
+                client.setNom(resultat.getString(4));
+                client.setPrenom(resultat.getString(5));
+                client.setSexe(resultat.getString(6));
+                client.setAdresse(resultat.getString(7));
+                client.setVille(resultat.getString(8));
+                client.setCode_postal(resultat.getInt(9));
+                client.setDate_naissance(resultat.getString(10));
+                client.setEmail(resultat.getString(11));
+                client.setTelephone(resultat.getInt(12));
+               
+            }
+            return client;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Client introuvable"+ex.getMessage());
+            return null;
+        }
+
+    
+    
+    }
+    
     public void insertclient (Client d){
 
         String requete = "INSERT INTO client (`login`, `password`, `nom`, `prenom`, `sexe`, "

@@ -22,6 +22,20 @@ import com.restfb.types.Page;
 import com.restfb.types.Post;
 import com.restfb.types.Url;
 import com.restfb.types.User;
+import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.dao.ClientDAO;
+import esprit.pidev.dao.CommercantDAO;
+import esprit.pidev.dao.DealDAO;
+import esprit.pidev.dao.adminDAO;
+import esprit.pidev.entities.Client;
+import esprit.pidev.entities.Commercant;
+import esprit.pidev.entities.administrateur;
+import esprit.pidev.shadow.AdminMenu;
+import esprit.pidev.shadow.ClientMenu;
+import esprit.pidev.shadow.CommercantMenu;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("deprecation")
 public class GraphReaderExample {
@@ -29,7 +43,7 @@ public class GraphReaderExample {
 
 
   public static void main(String[] args) {
-    new GraphReaderExample("CAADCNWW2dyYBAJHI1OMaZBlZCXqn6W8B8xAMJSlPE2M7mvSXmBspXn4vAB4pbr2YGs8XTNDDjDyrw6O9q1ZCOT6xTWKyC2pfZAqGWsJ6TrFanuRZBBkCYDNBucD84agkaCA8C3JuuCWyk0ZAgUoUZBmoGygGrjZAabtBxkF4p14yIJHFc8rMeg7jHGAB0XuGZAkAZD").runEverything();
+    new GraphReaderExample(Main.access_token).runEverything();
   }
 
   GraphReaderExample(String accessToken) {
@@ -53,6 +67,7 @@ public class GraphReaderExample {
   }
 
   void fetchObject() {
+     
     out.println("* Fetching single objects *");
 
     User user = facebookClient.fetchObject("me", User.class);
@@ -64,7 +79,43 @@ public class GraphReaderExample {
     out.println("ID Facebook: " + user.getId());
     out.println("About: " + user.getAbout());
     out.println("Birthday: " + user.getBirthday());
-    
+     
+      ClientDAO cdao=new ClientDAO();
+      Client client=cdao.findClientByEmail(user.getEmail());
+      adminDAO adao=new adminDAO();
+      administrateur a=adao.findAdminByEmail(user.getEmail());
+      CommercantDAO c = new CommercantDAO();
+      Commercant com = c.findCommercantByEmail(user.getEmail());
+      if (client.getEmail()!=null) {
+           frame_aceuil.idlog=client.getId_client();
+           System.out.println("Client!");
+           ClientMenu f3 = new ClientMenu();
+           f3.setVisible(true);
+           
+      }
+      else if(a.getMail()!=null)
+          {          
+     frame_aceuil.idlog=a.getId_admin();
+     System.out.println("Admin!");
+     AdminMenu f1= new AdminMenu();
+     f1.setVisible(true);
+          }
+      else if (com.getEmail()!=null) {
+           frame_aceuil.idlog=com.getId_commercant();
+            System.out.println("Commercant!");
+            CommercantMenu f2 = new CommercantMenu();
+            f2.setVisible(true);
+      }
+      else {
+       
+        try {
+            new frame_aceuil();
+        } catch (SQLException ex) {
+            Logger.getLogger(GraphReaderExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+      System.out.println("Sava pas");
+      }
     //out.println("Page likes: " + page.getLikes());
   }
 
@@ -259,4 +310,5 @@ public class GraphReaderExample {
     out.println("* Raw JSON *");
     out.println("User object JSON: " + facebookClient.fetchObject("me", String.class));
   }
+  
 }

@@ -28,6 +28,35 @@ import java.util.List;
 public class adminDAO {
 
    
+    public administrateur findAdminByEmail(String email)
+    {
+      administrateur admin = new administrateur();
+     String requete = "select * from administrateur where mail=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, email);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                        admin.setId_admin(resultat.getInt(1));
+                        admin.setNom_admin(resultat.getString(2));
+                        admin.setLogin(resultat.getString(3));
+                        admin.setPassword(resultat.getString(4));
+                        admin.setMail(resultat.getString(5));
+               
+            }
+            
+            return admin;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Admin introuvable "+ex.getMessage());
+            return null;
+        }
+    
+    }
+    
+    
 
     public List<administrateur> GetAlladministrateur() {
         List<administrateur> listeadmins = new ArrayList<administrateur>();
