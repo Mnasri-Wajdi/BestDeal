@@ -22,6 +22,31 @@ import javax.swing.JOptionPane;
 //hfff
 public class CommercantDAO {
     
+    
+    public List<Commercant> CommercantChart()
+    {
+     List<Commercant> listecommercant = new ArrayList<Commercant>();
+
+    String requete="select nom_commercant,note_commercant from commercant";
+ try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next()){
+                Commercant commercant =new Commercant();
+                commercant.setNom_commercant(resultat.getString(1));
+                commercant.setNote(resultat.getFloat(2));
+                listecommercant.add(commercant);
+            }
+            return listecommercant;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement d'admins "+ex.getMessage());
+            return null;
+        }
+   
+    }
+    
     public void InsertCommercant(Commercant c){
     
          String requete = "insert into commercant (nom_commercant,description,adresse,email,telephone,login,password,note_commercant,nbr_note,somme_note) values (?,?,?,?,?,?,?,0,0,0)";
