@@ -21,16 +21,20 @@ public class CommercantUpdateModel extends AbstractTableModel{
     String []header = {"Id","Nom commerçant","Description","Adresse","Email","Téléphone","Login","Mot de passe"};
   
   
-     public static boolean isEmailAdress(String email){
+/*     public static boolean isEmailAdress(String email){
     Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
     Matcher m = p.matcher(email.toUpperCase());
     return m.matches();
-    }
+    }*/
     //private Component UpdateCommercant;
     
     
     public CommercantUpdateModel() { 
-        listCommercant=new CommercantDAO().DisplayAllCommercants();
+        if (GererCommercant.recherche.isEmpty()) {
+  listCommercant=new CommercantDAO().DisplayAllCommercants();
+        }
+        else
+              listCommercant=new CommercantDAO().findCommercantByName(GererCommercant.recherche);
     }
     
     public int getRowCount() { 
@@ -103,7 +107,7 @@ public void setValueAt(Object value, int row, int col)
   JOptionPane.showMessageDialog(new GererCommercant(), "Le champ adresse ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
      }
-     else if (col==4) {
+   /*  else if (col==4) {
           if ((value.toString().length()>0)&&(isEmailAdress(value.toString()))) {
         commercant.setEmail((String)value);
          cdao.updateCommercant(commercant);
@@ -111,7 +115,7 @@ public void setValueAt(Object value, int row, int col)
     else{
   JOptionPane.showMessageDialog(new GererCommercant(), "Adresse email non valide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
-     }
+     }*/
      else if (col==5) {
          if (value.toString().length()==8)
          {

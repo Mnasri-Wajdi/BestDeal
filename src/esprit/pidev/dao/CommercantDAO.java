@@ -22,11 +22,37 @@ import javax.swing.JOptionPane;
 //hfff
 public class CommercantDAO {
     
-    public Commercant findCommercantByEmail(String email)
-            
+    
+    public List<Commercant> findCommercantByName (String nom){
+     List<Commercant> listeCommercant = new ArrayList<Commercant>();
+
+        String requete = "select * from Commercant where nom_commercant like ?";
+        try {
+         PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, nom+"%");
+            ResultSet resultat = ps.executeQuery();
+   
+            while(resultat.next()){
+                Commercant commercant =new Commercant();
+                commercant.setId_commercant(resultat.getInt(1));
+                commercant.setNom_commercant(resultat.getString(2));
+                commercant.setDescription(resultat.getString(3));
+                commercant.setAdresse(resultat.getString(4));
+                commercant.setEmail(resultat.getString(5));
+                commercant.setTel(resultat.getInt(6));
+                commercant.setLogin(resultat.getString(7));
+                commercant.setPassword(resultat.getString(8));
+                listeCommercant.add(commercant);
+            }
+            return listeCommercant;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
+            return null;
+        }}
+    
+    public Commercant findCommercantByEmail(String email)        
     {
-    
-    
     Commercant commercant = new Commercant();
      String requete = "select * from commercant where email=?";
         try {

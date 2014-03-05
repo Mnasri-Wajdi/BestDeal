@@ -26,8 +26,8 @@ import javax.swing.table.TableColumn;
  */
 public class GererCommercant extends javax.swing.JFrame {
 
-    
-    
+    public static String emailCommercant;
+    public static String  recherche="";
  
     
     /**
@@ -80,11 +80,16 @@ public class GererCommercant extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        rech = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         btn_supprimer = new javax.swing.JButton();
+        rech1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -334,14 +339,37 @@ public class GererCommercant extends javax.swing.JFrame {
         jTable1.setModel(new CommercantUpdateModel());
         jScrollPane2.setViewportView(jTable1);
 
+        jButton3.setText("Envoyer un email à ce commerçant");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        rech.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rechKeyReleased(evt);
+            }
+        });
+
+        jLabel11.setText("Rechercher par nom:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(354, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rech, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(20, 20, 20)
@@ -353,7 +381,13 @@ public class GererCommercant extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rech, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(60, 60, 60))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(107, 107, 107)
@@ -386,6 +420,14 @@ public class GererCommercant extends javax.swing.JFrame {
             }
         });
 
+        rech1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rech1KeyReleased(evt);
+            }
+        });
+
+        jLabel12.setText("Rechercher par nom:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -399,6 +441,12 @@ public class GererCommercant extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(355, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rech1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
@@ -410,7 +458,11 @@ public class GererCommercant extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rech1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                 .addComponent(btn_supprimer)
                 .addGap(61, 61, 61))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,6 +579,8 @@ logs.setText("Admin "+a.getNom_admin());
 
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
         // TODO add your handling code here:
+       recherche="";
+        rech.setText("");
         jTable1.setModel(new CommercantUpdateModel());
     TableColumn column = jTable1.getColumnModel().getColumn(0);
     column.setMinWidth(0);
@@ -534,17 +588,30 @@ logs.setText("Admin "+a.getNom_admin());
     column.setWidth(0);
     column.setPreferredWidth(0);
     doLayout();
+    TableColumn column2 = jTable1.getColumnModel().getColumn(4);
+    column2.setMinWidth(0);
+    column2.setMaxWidth(0);
+    column2.setWidth(0);
+    column2.setPreferredWidth(0);
+    doLayout();
     }//GEN-LAST:event_jPanel2ComponentShown
 
     private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
         // TODO add your handling code here:
-          
+        recherche="";
+        rech1.setText("");
           jTable2.setModel(new CommercantDeleteModel());
           TableColumn column2 = jTable2.getColumnModel().getColumn(0);
     column2.setMinWidth(0);
     column2.setMaxWidth(0);
     column2.setWidth(0);
     column2.setPreferredWidth(0);
+    doLayout();
+       TableColumn column1 = jTable2.getColumnModel().getColumn(4);
+    column1.setMinWidth(0);
+    column1.setMaxWidth(0);
+    column1.setWidth(0);
+    column1.setPreferredWidth(0);
     doLayout();
     }//GEN-LAST:event_jPanel3ComponentShown
 
@@ -668,6 +735,52 @@ pwd_label.setText("");
 pwd_soc.setText("");
     }//GEN-LAST:event_jPanel4ComponentShown
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+      emailCommercant= (String)jTable1.getValueAt(jTable1.getSelectedRow(),4);
+        this.dispose();
+        MailJframeAdmin f1 =new MailJframeAdmin();
+        f1.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void rechKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rechKeyReleased
+        // TODO add your handling code here:
+         recherche=rech.getText();
+               
+                jTable1.setModel(new CommercantUpdateModel());
+    TableColumn column11 = jTable1.getColumnModel().getColumn(0);
+    column11.setMinWidth(0);
+    column11.setMaxWidth(0);
+    column11.setWidth(0);
+    column11.setPreferredWidth(0);
+    doLayout();
+    TableColumn column22 = jTable1.getColumnModel().getColumn(4);
+    column22.setMinWidth(0);
+    column22.setMaxWidth(0);
+    column22.setWidth(0);
+    column22.setPreferredWidth(0);
+    doLayout();
+    }//GEN-LAST:event_rechKeyReleased
+
+    private void rech1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rech1KeyReleased
+        // TODO add your handling code here:
+        recherche=rech1.getText();
+        jTable2.setModel(new CommercantDeleteModel());
+          TableColumn column6 = jTable2.getColumnModel().getColumn(0);
+    column6.setMinWidth(0);
+    column6.setMaxWidth(0);
+    column6.setWidth(0);
+    column6.setPreferredWidth(0);
+    doLayout();
+       TableColumn column9 = jTable2.getColumnModel().getColumn(4);
+    column9.setMinWidth(0);
+    column9.setMaxWidth(0);
+    column9.setWidth(0);
+    column9.setPreferredWidth(0);
+    doLayout();
+       
+    }//GEN-LAST:event_rech1KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -712,8 +825,11 @@ pwd_soc.setText("");
     private javax.swing.JTextField email_soc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -729,7 +845,7 @@ pwd_soc.setText("");
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    protected javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lab_desc;
@@ -740,6 +856,8 @@ pwd_soc.setText("");
     private javax.swing.JTextField nom_soc;
     private javax.swing.JLabel pwd_label;
     private javax.swing.JPasswordField pwd_soc;
+    private javax.swing.JTextField rech;
+    private javax.swing.JTextField rech1;
     private javax.swing.JLabel tel_label;
     private javax.swing.JTextField tel_soc;
     // End of variables declaration//GEN-END:variables
