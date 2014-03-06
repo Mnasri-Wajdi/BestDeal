@@ -159,8 +159,9 @@ public class Reclamer_pb extends javax.swing.JFrame {
         
          if (verif_pb.getText()=="")
                 {
+        int resultat=JOptionPane.showConfirmDialog(null,"Êtes-vous sûr de vouloir faire cette Réclamation ?  ", "Réc", JOptionPane.YES_NO_OPTION);
         
-        
+         if (resultat==JOptionPane.YES_OPTION) {
         Reclamation r = new Reclamation();
         DealDAO deal_dao = new DealDAO();
         
@@ -169,7 +170,7 @@ public class Reclamer_pb extends javax.swing.JFrame {
             r.setId_client(Integer.parseInt(l_client.getText()));
             deal_dao.insertProbleme(r);
         
-            JOptionPane.showMessageDialog(this, "Envoi de la réclamation effectué avec succès");}
+            JOptionPane.showMessageDialog(this, "Envoi de la réclamation effectué avec succès");}}
     }//GEN-LAST:event_btm_reclamerActionPerformed
 
     private void l_clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_l_clientActionPerformed

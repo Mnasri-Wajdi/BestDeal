@@ -4,6 +4,9 @@
  */
 package esprit.pidev.dao;
 
+import esprit.pidev.entities.Client;
+import esprit.pidev.entities.Reclamation;
+import esprit.pidev.entities.Reclamation2;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +16,7 @@ import java.util.List;
 
 
 import esprit.pidev.entities.administrateur;
+import esprit.pidev.gui.ben_mabrouk_marwen.GererCommercant;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,5 +133,93 @@ public class adminDAO {
             return null;
         }
     }
+    
+    //Mnasri Wajdi
+    
+     public List<Reclamation2> GetAllReclamation() {
+        List<Reclamation2> listereclamtion = new ArrayList<Reclamation2>();
+        String requete1 = "select id_client,message from reclamation ORDER BY id_client ASC";
+        try {
+            Statement statement = MyConnection.getInstance()
+                    .createStatement();
+            ResultSet resultat1 = statement.executeQuery(requete1);
+            while (resultat1.next()) {
+                
+                  Reclamation2 rec = new Reclamation2();
+                rec.setNom(FindNomById(resultat1.getInt(1)));
+                rec.setEmail(FindEmailByID(resultat1.getInt(1)));
+                rec.setMsg(resultat1.getString(2));
+                listereclamtion.add(rec);
+            }
+            return listereclamtion;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des réclamation " + ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    public String FindNomById(int id){
+        String x ="";
+     String requete2 = "select nom from client where id_client=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete2);
+            ps.setInt(1, id);
+            ResultSet resultat2 = ps.executeQuery();
+            while (resultat2.next()) {
+                
+                 x= resultat2.getString(1);
+            }
+            return x;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du nom "+ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    public String FindEmailByID(int id){
+        String v="";
+     String requete3 = "select email from client where id_client=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete3);
+            ps.setInt(1, id);
+            ResultSet resultat3 = ps.executeQuery();
+             while (resultat3.next()) {
+               v=resultat3.getString(1);
+             }
+              return v;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du mail "+ex.getMessage());
+            return null;
+        }
+    }
+    
+    public void DeleteRec(String n){
+
+         String requete = "delete from reclamation where message=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, n);
+            ps.executeUpdate();
+            System.out.println("Suppression effectuée avec succès");
+             
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la suppression "+ex.getMessage());
+             
+
+        }
+    
+        }
+    
+    
+    
+    
+    
+    
     
 }
