@@ -155,6 +155,10 @@ public class Liste_pb extends javax.swing.JFrame {
        
        
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        if(jTable1.getSelectedRow()!=-1){
+        
+        
         email_client = (String)jTable1.getValueAt(jTable1.getSelectedRow(),1);
         
        // if(jTable1.getSelectedRow()!=-1){
@@ -162,9 +166,9 @@ public class Liste_pb extends javax.swing.JFrame {
         Mail_To_Client f1 =new Mail_To_Client();
         f1.setVisible(true);
         
-       // }
-       // else
-         //  JOptionPane.showMessageDialog(this, "vous devez sélectionner un client"); 
+        }
+       else
+           JOptionPane.showMessageDialog(this, "vous devez sélectionner un client"); 
     }//GEN-LAST:event_jButton3ActionPerformed
     
     /**
