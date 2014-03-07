@@ -4,7 +4,6 @@ package esprit.pidev.gui.klibi_mahdi;
 
 import esprit.pidev.dao.DealDAO;
 import esprit.pidev.entities.Deal;
-import esprit.pidev.gui.ben_mabrouk_marwen.GererCommercant;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
