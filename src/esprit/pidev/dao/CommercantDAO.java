@@ -5,7 +5,6 @@
 package esprit.pidev.dao;
 
 import esprit.pidev.entities.Commercant;
-import esprit.pidev.gui.ben_mabrouk_marwen.GererCommercant;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,87 +19,6 @@ import javax.swing.JOptionPane;
  */
 //hfff
 public class CommercantDAO {
-    
-    
-    public List<Commercant> findCommercantByName (String nom){
-     List<Commercant> listeCommercant = new ArrayList<Commercant>();
-
-        String requete = "select * from Commercant where nom_commercant like ?";
-        try {
-         PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, nom+"%");
-            ResultSet resultat = ps.executeQuery();
-   
-            while(resultat.next()){
-                Commercant commercant =new Commercant();
-                commercant.setId_commercant(resultat.getInt(1));
-                commercant.setNom_commercant(resultat.getString(2));
-                commercant.setDescription(resultat.getString(3));
-                commercant.setAdresse(resultat.getString(4));
-                commercant.setEmail(resultat.getString(5));
-                commercant.setTel(resultat.getInt(6));
-                commercant.setLogin(resultat.getString(7));
-                commercant.setPassword(resultat.getString(8));
-                listeCommercant.add(commercant);
-            }
-            return listeCommercant;
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
-            return null;
-        }}
-    
-    public Commercant findCommercantByEmail(String email)        
-    {
-    Commercant commercant = new Commercant();
-     String requete = "select * from commercant where email=?";
-        try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, email);
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next())
-            {
-                commercant.setId_commercant(resultat.getInt(1));
-                commercant.setNom_commercant(resultat.getString(2));
-                commercant.setDescription(resultat.getString(3));
-                commercant.setAdresse(resultat.getString(4));
-                commercant.setEmail(resultat.getString(5));
-                commercant.setTel(resultat.getInt(6));
-                commercant.setLogin(resultat.getString(7));
-                commercant.setPassword(resultat.getString(8));
-            }
-            return commercant;
-
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Commercant introuvable "+ex.getMessage());
-            return null;
-        }
-    }
-    
-    public List<Commercant> CommercantChart()
-    {
-     List<Commercant> listecommercant = new ArrayList<Commercant>();
-
-    String requete="select nom_commercant,note_commercant from commercant";
- try {
-           Statement statement = MyConnection.getInstance()
-                   .createStatement();
-            ResultSet resultat = statement.executeQuery(requete);
-            while(resultat.next()){
-                Commercant commercant =new Commercant();
-                commercant.setNom_commercant(resultat.getString(1));
-                commercant.setNote(resultat.getFloat(2));
-                listecommercant.add(commercant);
-            }
-            return listecommercant;
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement d'admins "+ex.getMessage());
-            return null;
-        }
-   
-    }
     
     public void InsertCommercant(Commercant c){
     
@@ -176,23 +93,17 @@ public void updateCommercant(Commercant c){
             System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
             return null;
         }}
-  public void deleteCommercant(int num){
-         
-         
-         
-         
-         String requete = "delete from Commercant where id_commercant=?";
+     public void deleteCommercant(int num){
+
+          String requete = "delete from Commercant where id_commercant=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, num);
             ps.executeUpdate();
             System.out.println("Suppression effectuée avec succès");
-             JOptionPane.showMessageDialog(new GererCommercant(), "Commerçant supprimé avec succès");
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la suppression "+ex.getMessage());
-              JOptionPane.showMessageDialog(new GererCommercant(), "Suppression impossible ! \nDes deals sont liés à ce commerçant ","Erreur" ,JOptionPane.ERROR_MESSAGE);
-
         }
     
         }

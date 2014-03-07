@@ -16,7 +16,6 @@ public class DealDeleteModel extends AbstractTableModel{
     String []header = {"id Deal","Libelle Deal","description","Categorie","Date Debut","Date Fin","Ancien Montant","Nouveau Montant","Quantite Disponible","Nom commercant"};
 
     public DealDeleteModel() { 
-        
         listDeal=new DealDAO().DisplayAllDeal();
     }
     

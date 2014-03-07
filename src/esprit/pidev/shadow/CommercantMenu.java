@@ -4,10 +4,12 @@
  */
 package esprit.pidev.shadow;
 
+import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.mail.MailJframe;
 import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.gui.ben_mabrouk_marwen.AddCommercant;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -107,13 +109,12 @@ public class CommercantMenu extends javax.swing.JFrame {
             
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(CommercantMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddCommercant.class.getName()).log(Level.SEVERE, null, ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       
         CommercantDAO cdao = new CommercantDAO();
    Commercant c=cdao.findCommercantById(frame_aceuil.idlog);
 logs.setText("Bienvenue "+c.getNom_commercant());

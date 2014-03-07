@@ -8,7 +8,6 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -63,87 +62,37 @@ public void setValueAt(Object value, int row, int col)
 {
     Deal deal = listdeal.get(row);
     DealDAO dealdao= new DealDAO();
-   
-    if (col==0) {
-   JOptionPane.showMessageDialog(new GererDeal(), "Le champ Id deal ne peut pas être modifié","Erreur" ,JOptionPane.ERROR_MESSAGE);     
+    if (col==1)
+    {deal.setLibelle_deal((String)value);
+      dealdao.updateDeal(deal);
     }
-    
-    
-    if (col==1){
-        if (value.toString().length()>0){
-      deal.setLibelle_deal((String)value);
-      dealdao.updateDeal(deal);}
-        else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Libelle Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-               }
-    
-    
     else if (col==2) {
-        if (value.toString().length()>0){
         deal.setDescription((String)value);
-         dealdao.updateDeal(deal);}
-         else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Description Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-               }
-    
-    
+         dealdao.updateDeal(deal);
+    }
      else if (col==3) {
-         if (value.toString().length()>0){
         deal.setCategorie((String)value);
-         dealdao.updateDeal(deal);}
-         else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Catégorie Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-     }     
-         
-         
+         dealdao.updateDeal(deal);
+    }
      else if (col==4) {
-         if (value.toString().length()>0){
         deal.setDate_debut((String)value);
-         dealdao.updateDeal(deal);}
-     else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Date_Début Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-         }
-         
-         
+         dealdao.updateDeal(deal);
+    }
      else if (col==5) {
-         if (value.toString().length()>0){
         deal.setDate_fin((String)value);
-         dealdao.updateDeal(deal);}
-   else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Date_Fin Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-     }
-     
-     
+         dealdao.updateDeal(deal);
+    }
      else if (col==6) {
-          if (value.toString().length()>0){
         deal.setAncien_montant(Float.parseFloat((String)value));
-         dealdao.updateDeal(deal);}
-    else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Ancien_Montant Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-     }
-     
-     
+         dealdao.updateDeal(deal);
+    }
      else if (col==7) {
-         if (value.toString().length()>0){
         deal.setNouveau_montant(Float.parseFloat((String)value));
-         dealdao.updateDeal(deal);}
-     else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ nouveau_Montant Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
-     }
+         dealdao.updateDeal(deal);
+    }
     else if (col==8) {
-        if (value.toString().length()>0){
         deal.setQuantite_disponible(Integer.parseInt((String)value));
-         dealdao.updateDeal(deal);}
-    else{
-  JOptionPane.showMessageDialog(new GererDeal(), "Le champ Quantité_disponible Deal ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
-             }
+         dealdao.updateDeal(deal);
     }
     fireTableCellUpdated(row,col);
 }

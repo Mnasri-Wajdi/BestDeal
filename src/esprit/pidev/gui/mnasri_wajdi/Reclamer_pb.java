@@ -4,12 +4,8 @@
  */
 package esprit.pidev.gui.mnasri_wajdi;
 
-import esprit.pidev.accueil.frame_aceuil;
-import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
-import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Reclamation;
-import esprit.pidev.shadow.ClientMenu;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,16 +39,9 @@ public class Reclamer_pb extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         l_client = new javax.swing.JTextField();
         verif_pb = new javax.swing.JLabel();
-        logs = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         pb.setColumns(20);
         pb.setRows(5);
@@ -60,7 +49,7 @@ public class Reclamer_pb extends javax.swing.JFrame {
 
         jLabel1.setText("Rédiger un probléme :");
 
-        btm_reclamer.setText("Réclamer le probléme");
+        btm_reclamer.setText("Réclamer le probléme à l'admininstrateur");
         btm_reclamer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btm_reclamerActionPerformed(evt);
@@ -71,6 +60,7 @@ public class Reclamer_pb extends javax.swing.JFrame {
 
         jLabel3.setText("client ");
 
+        l_client.setText("3");
         l_client.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 l_clientActionPerformed(evt);
@@ -79,13 +69,6 @@ public class Reclamer_pb extends javax.swing.JFrame {
 
         verif_pb.setForeground(new java.awt.Color(255, 0, 0));
 
-        jButton1.setText("Accueil");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,55 +76,42 @@ public class Reclamer_pb extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel1)
                         .addGap(81, 81, 81)
                         .addComponent(verif_pb))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(btm_reclamer))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btm_reclamer)
-                                .addGap(126, 126, 126)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))))
-                .addContainerGap(225, Short.MAX_VALUE))
+                        .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(l_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(verif_pb))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btm_reclamer)
-                    .addComponent(jButton1))
-                .addGap(28, 28, 28))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btm_reclamer)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,9 +129,8 @@ public class Reclamer_pb extends javax.swing.JFrame {
         
          if (verif_pb.getText()=="")
                 {
-        int resultat=JOptionPane.showConfirmDialog(null,"Êtes-vous sûr de vouloir faire cette Réclamation ?  ", "Réc", JOptionPane.YES_NO_OPTION);
         
-         if (resultat==JOptionPane.YES_OPTION) {
+        
         Reclamation r = new Reclamation();
         DealDAO deal_dao = new DealDAO();
         
@@ -170,31 +139,12 @@ public class Reclamer_pb extends javax.swing.JFrame {
             r.setId_client(Integer.parseInt(l_client.getText()));
             deal_dao.insertProbleme(r);
         
-            JOptionPane.showMessageDialog(this, "Envoi de la réclamation effectué avec succès");}}
+            JOptionPane.showMessageDialog(this, "Envoi de la réclamation effectué avec succès");}
     }//GEN-LAST:event_btm_reclamerActionPerformed
 
     private void l_clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_l_clientActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_l_clientActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-        this.setLocationRelativeTo(null);
-        ClientDAO cldao = new ClientDAO();
-   Client c=cldao.findClientById(frame_aceuil.idlog);
-    logs.setText("Bienvenue "+c.getNom());
-        l_client.setText(Integer.toString(c.getId_client()));
-        
-        
-        
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-            this.dispose();
-            new ClientMenu().setVisible(true);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,13 +182,11 @@ public class Reclamer_pb extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btm_reclamer;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField l_client;
-    private javax.swing.JLabel logs;
     private javax.swing.JTextArea pb;
     private javax.swing.JLabel verif_pb;
     // End of variables declaration//GEN-END:variables

@@ -13,14 +13,10 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CommercantDeleteModel extends AbstractTableModel{
      List<Commercant> listCommercant = new ArrayList<Commercant>();
-    String []header = {"Id","Nom commerçant","Description","Adresse","Email","Téléphone","Login","Mot de passe"};
+    String []header = {"id_Commercant","nom commercant","description","adresse","email","telephone","login","password"};
 
-    public CommercantDeleteModel() {   
-    if (GererCommercant.recherche.isEmpty()) {
-listCommercant=new CommercantDAO().DisplayAllCommercants();
-        }
-        else
-              listCommercant=new CommercantDAO().findCommercantByName(GererCommercant.recherche);
+    public CommercantDeleteModel() { 
+        listCommercant=new CommercantDAO().DisplayAllCommercants();
     }
     
     public int getRowCount() { 
