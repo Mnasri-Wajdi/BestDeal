@@ -4,7 +4,7 @@
  */
 package esprit.pidev.gui.klibi_mahdi;
 
-import esprit.pidev.gui.klibi_mahdi.Frame_UpdateDeal;
+import esprit.pidev.gui.klibi_mahdi.GererDeal;
 import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.dao.DealDAO;
@@ -713,7 +713,7 @@ public class GererDeal extends javax.swing.JFrame {
 
             // TODO add your handling code here:
         } catch (SQLException ex) {
-            Logger.getLogger(Frame_UpdateDeal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GererDeal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
