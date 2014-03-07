@@ -7,6 +7,7 @@ package esprit.pidev.dao;
 
 import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.entities.Reservation;
+import esprit.pidev.gui.tonniche_syrine.AfficherDeals;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +25,61 @@ public class ReservationDAO {
     
     //test66
     //884
+    public boolean verifier_quantite(Reservation reservation)
+    {
+         String requete = "select quantite_disponible from deal where id_deal=?";
+        try {
+           
+                   PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+                   ps.setInt(1,reservation.getId_deal());
+                  
+                   ResultSet result = ps.executeQuery();
+                  result.next();
+                   int quantite = result.getInt(1);
+                 //  System.out.println(quantite_res(reservation));
+                   //   System.out.println(quantite);
+                 if (quantite>quantite_res(reservation)) {
+                
+           
+                      return true;
+                       }
+                   
+                     else 
+                 
+                       return false;
+            
+                   
+        }
+        catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement de la quantite "+ex.getMessage());
+         return false;
+        }
+    
+
+    }
+    public int quantite_res(Reservation reservation)
+    {
+           String requete = "select quantite from reservation where id_deal=? and id_client=?";
+        try {
+           
+                   PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+                   ps.setInt(1,reservation.getId_deal());
+                   ps.setInt(2, reservation.getId_client());
+                   ResultSet result = ps.executeQuery();
+                  result.next();
+                   int quantite = result.getInt(1);
+                  return quantite;
+            
+                   
+        }
+        catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement de la quantite "+ex.getMessage());
+         return -1;
+        }
+    
+    }
     
         public float total_reservation( ) 
              
@@ -73,8 +130,11 @@ public class ReservationDAO {
         }
     }
     
-     public void InsertReservation(Reservation reservation){
+    public void InsertReservation(Reservation reservation){
          if (verifier_reservation(reservation)) {
+             if (verifier_quantite(reservation)) {
+                 
+             
              String requete="update reservation set  date_reservation =?,quantite=quantite+1 where id_client=? and id_deal=? ";
            try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -87,10 +147,16 @@ public class ReservationDAO {
 
             ps.executeUpdate();
             System.out.println("Update effectuée avec succès");
+            JOptionPane.showMessageDialog(new AfficherDeals(), "Ajout effectué avec succès");
        } catch (SQLException ex) {
          
             System.out.println("erreur lors de l'Update "+ex.getMessage());
         }
+         }
+             else
+             {System.out.println("Vous ne pouvez plus reserver");
+             JOptionPane.showMessageDialog(new AfficherDeals(), "Vous ne pouvez plus reserver");
+             }
          }
          else
          {
@@ -107,6 +173,7 @@ public class ReservationDAO {
 
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
+            JOptionPane.showMessageDialog(new AfficherDeals(), "Ajout effectué avec succès");
        } catch (SQLException ex) {
          
             System.out.println("erreur lors de l'insertion "+ex.getMessage());
