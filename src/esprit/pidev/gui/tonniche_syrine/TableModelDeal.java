@@ -17,10 +17,11 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelDeal extends AbstractTableModel{
  
     List<Deal> listDeal = new ArrayList<Deal>();
-     String []header = {"id deal","Libelle","Description","Categorie","Date debut","date_fin","Ancien montant","Nouveau montant"};
+     String []header = {"id deal","Libelle","Description","Categorie","Date debut","date_fin","Ancien montant","Nouveau montant","Quantité Disponible"};
 
     public TableModelDeal() {
         listDeal=new DealDAO().DisplayAllDeals();
+        
     }
      
      
@@ -51,12 +52,14 @@ public class TableModelDeal extends AbstractTableModel{
                 return listDeal.get(rowIndex).getCategorie();
             case 4:
               return listDeal.get(rowIndex).getDate_debut();
-                case 5:
+            case 5:
                 return listDeal.get(rowIndex).getDate_fin();
-                   case 6:
+            case 6:
                 return listDeal.get(rowIndex).getAncien_montant();
-                case 7:
+            case 7:
                 return listDeal.get(rowIndex).getNouveau_montant();
+            case 8:
+                return listDeal.get(rowIndex).getQuantite_disponible();
                 
                  
                 

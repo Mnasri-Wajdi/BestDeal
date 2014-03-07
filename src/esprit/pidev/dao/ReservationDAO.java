@@ -5,6 +5,7 @@
 package esprit.pidev.dao;
 
 
+import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.entities.Reservation;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,29 @@ public class ReservationDAO {
     //test66
     //884
     
+        public float total_reservation( ) 
+             
+     {
+        
+        String requete = "select sum(prix*quantite) from reservation where `id_client`=?";
+        try {
+           
+                   PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+                   ps.setInt(1, frame_aceuil.idlog);
+                   System.out.println("idlog"+frame_aceuil.idlog); 
+                   ResultSet result = ps.executeQuery();
+                   result.next();
+                   float sum = result.getFloat(1);
+                   
+                   
+            return sum;
+            
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement du total "+ex.getMessage());
+          return 0;
+        }
+    }
       public boolean verifier_reservation(Reservation res )
     {
         
@@ -89,12 +113,12 @@ public class ReservationDAO {
         }
          }
     }
-    public List<Reservation> DisplayAllReservations (){
+    public List<Reservation> DisplayAllReservations (int id){
 
 
         List<Reservation> listeReservation = new ArrayList<Reservation>();
 
-        String requete = "select * from reservation";
+        String requete = "select * from reservation where id_client="+id;
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
@@ -104,7 +128,7 @@ public class ReservationDAO {
                 reservation.setNumero_reservation(resultat.getInt(1));
                  reservation.setDate_reservation(resultat.getString(2));
                  resultat.getInt(3);
-                 resultat.getInt(4);
+             reservation.setId_deal(resultat.getInt(4));
                  reservation.setQuantite(resultat.getInt(5));
                  reservation.setPrix(resultat.getDouble(6));
                 
@@ -114,7 +138,7 @@ public class ReservationDAO {
             return listeReservation;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des stocks "+ex.getMessage());
+            System.out.println("erreur lors du chargement des reservations "+ex.getMessage());
             return null;
         }
     }

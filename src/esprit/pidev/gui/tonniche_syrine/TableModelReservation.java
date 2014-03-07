@@ -4,7 +4,9 @@
  */
 package esprit.pidev.gui.tonniche_syrine;
 
+import esprit.pidev.dao.DealDAO;
 import esprit.pidev.dao.ReservationDAO;
+import esprit.pidev.entities.Deal;
 import esprit.pidev.entities.Reservation;
 import java.util.*;
 import javax.swing.table.AbstractTableModel;
@@ -15,11 +17,11 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModelReservation extends AbstractTableModel{
      List<Reservation> listeReservation = new ArrayList<Reservation>();
-     String []header = {"Numero","Date","Prix","Quantité"};
+     String []header = {"Numero","Nom Deal","Date","Prix","Quantité"};
 
-    public TableModelReservation() {
+    public TableModelReservation(int id) {
         
-        listeReservation= new ReservationDAO().DisplayAllReservations();
+        listeReservation= new ReservationDAO().DisplayAllReservations(id);
     }
      
     // @Override
@@ -35,14 +37,22 @@ public class TableModelReservation extends AbstractTableModel{
 
    // @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex) {
-            case 0:
+       switch (columnIndex) {
+           case 0:
                 return listeReservation.get(rowIndex).getNumero_reservation();
-            case 1:
+            case 1: 
+                DealDAO dao=new DealDAO();
+                Deal d = dao.findDealById(listeReservation.get(rowIndex).getId_deal());
+                
+                return d.getLibelle_deal();
+                
+                
+
+                case 2:
                 return listeReservation.get(rowIndex).getDate_reservation();
-            case 2:
+                case 3:
                 return listeReservation.get(rowIndex).getPrix();
-           case 3:
+           case 4:
               return listeReservation.get(rowIndex).getQuantite();
             default:
                 return null;

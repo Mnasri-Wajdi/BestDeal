@@ -18,19 +18,23 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CommercantUpdateModel extends AbstractTableModel{
      List<Commercant> listCommercant = new ArrayList<Commercant>();
-    String []header = {"id_Commercant","nom commercant","description","adresse","email","telephone","login","password"};
+    String []header = {"Id","Nom commerçant","Description","Adresse","Email","Téléphone","Login","Mot de passe"};
   
   
-     public static boolean isEmailAdress(String email){
+/*     public static boolean isEmailAdress(String email){
     Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
     Matcher m = p.matcher(email.toUpperCase());
     return m.matches();
-    }
+    }*/
     //private Component UpdateCommercant;
     
     
     public CommercantUpdateModel() { 
-        listCommercant=new CommercantDAO().DisplayAllCommercants();
+        if (GererCommercant.recherche.isEmpty()) {
+  listCommercant=new CommercantDAO().DisplayAllCommercants();
+        }
+        else
+              listCommercant=new CommercantDAO().findCommercantByName(GererCommercant.recherche);
     }
     
     public int getRowCount() { 
@@ -72,7 +76,7 @@ public void setValueAt(Object value, int row, int col)
     Commercant commercant = listCommercant.get(row);
     CommercantDAO cdao= new CommercantDAO();
     if (col==0) {
-   JOptionPane.showMessageDialog(new UpdateCommercant(), "Le champ Id commercant ne peut pas être modifié","Erreur" ,JOptionPane.ERROR_MESSAGE);     
+   JOptionPane.showMessageDialog(new GererCommercant(), "Le champ Id commercant ne peut pas être modifié","Erreur" ,JOptionPane.ERROR_MESSAGE);     
     }
     
     if (col==1)
@@ -83,12 +87,16 @@ public void setValueAt(Object value, int row, int col)
             
    }
         else{
-  JOptionPane.showMessageDialog(new UpdateCommercant(), "Le champ nom commercant ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(new GererCommercant(), "Le champ nom commercant ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
         }
     else if (col==2) {
+         if (value.toString().length()>0) {
          commercant.setDescription((String)value);
-         cdao.updateCommercant(commercant);
+         cdao.updateCommercant(commercant);}
+         else{
+  JOptionPane.showMessageDialog(new GererCommercant(), "Le champ description ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
+        }
     }
      else if (col==3) {
          if (value.toString().length()>0) {
@@ -96,18 +104,18 @@ public void setValueAt(Object value, int row, int col)
          cdao.updateCommercant(commercant);
     }
          else{
-  JOptionPane.showMessageDialog(new UpdateCommercant(), "Le champ adresse ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(new GererCommercant(), "Le champ adresse ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
      }
-     else if (col==4) {
+   /*  else if (col==4) {
           if ((value.toString().length()>0)&&(isEmailAdress(value.toString()))) {
         commercant.setEmail((String)value);
          cdao.updateCommercant(commercant);
           }
     else{
-  JOptionPane.showMessageDialog(new UpdateCommercant(), "Adresse email non valide","Erreur" ,JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(new GererCommercant(), "Adresse email non valide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
-     }
+     }*/
      else if (col==5) {
          if (value.toString().length()==8)
          {
@@ -116,13 +124,13 @@ public void setValueAt(Object value, int row, int col)
                commercant.setTel(Integer.parseInt((String)value));
                 cdao.updateCommercant(commercant);
               }catch(Exception e){
-                  JOptionPane.showMessageDialog(new UpdateCommercant(), "Le numero de téléphone doit contenir seulement des chiffres","Erreur" ,JOptionPane.ERROR_MESSAGE);
+                  JOptionPane.showMessageDialog(new GererCommercant(), "Le numero de téléphone doit contenir seulement des chiffres","Erreur" ,JOptionPane.ERROR_MESSAGE);
   
               }   
        
     }
      else{
-  JOptionPane.showMessageDialog(new UpdateCommercant(), "Le numero de téléphone doit contenir 8 chiffres ","Erreur" ,JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(new GererCommercant(), "Le numero de téléphone doit contenir 8 chiffres ","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
      }
      else if (col==6) {
@@ -131,7 +139,7 @@ public void setValueAt(Object value, int row, int col)
          cdao.updateCommercant(commercant);
     }
      else{
-  JOptionPane.showMessageDialog(new UpdateCommercant(), "Le champ login ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(new GererCommercant(), "Le champ login ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
      }
      else if (col==7) {
@@ -140,7 +148,7 @@ public void setValueAt(Object value, int row, int col)
          cdao.updateCommercant(commercant);
     }
      else{
-  JOptionPane.showMessageDialog(new UpdateCommercant(), "Le champ mot de passe ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(new GererCommercant(), "Le champ mot de passe ne peut pas être vide","Erreur" ,JOptionPane.ERROR_MESSAGE);
         }
      }
     fireTableCellUpdated(row,col);

@@ -15,7 +15,10 @@ import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.Client;
 import esprit.pidev.entities.Commercant;
 import esprit.pidev.entities.administrateur;
+import esprit.pidev.facebook.Main;
+import esprit.pidev.shadow.ClientMenu;
 import esprit.pidev.util.MyConnection;
+import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,6 +70,7 @@ public static int idlog;
         rb_commercant = new javax.swing.JRadioButton();
         rb_client = new javax.swing.JRadioButton();
         rb_admin = new javax.swing.JRadioButton();
+        fbbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -114,6 +118,13 @@ public static int idlog;
         rb_admin.setSelected(true);
         rb_admin.setText("Administrateur");
 
+        fbbutton.setText("jButton2");
+        fbbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fbbuttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,13 +160,18 @@ public static int idlog;
                             .addComponent(rb_commercant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(791, 791, 791)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(fbbutton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
+                .addGap(86, 86, 86)
+                .addComponent(fbbutton)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel4)
                 .addGap(92, 92, 92)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +204,7 @@ public static int idlog;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,10 +257,10 @@ public static int idlog;
                     if (admin.getPassword().equals(jPasswordField2.getText())) {
                                
                         idlog=admin.getId_admin();
-                         
-                          
-                       AdminMenu f1 = new AdminMenu();
-                        this.setVisible(false);
+
+                         AdminMenu f1 = new AdminMenu();
+                       this.dispose();
+                      
                          f1.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Mot de passe incorrect", "Error", 1);
@@ -258,7 +274,11 @@ public static int idlog;
             Client client = clt.findclientByLogin(jTextField1.getText());
                 if (client != null) {
                     if (client.getPassword().equals(jPasswordField2.getText())) {
-                        JOptionPane.showMessageDialog(null, "Authentification avecc succs! ", "ok", 1);
+                      idlog=client.getId_client();
+                         ClientMenu f1 = new ClientMenu();
+                         
+                       this.dispose();
+                       f1.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Mot de passe incorrect", "Error", 1);
                     }
@@ -278,7 +298,7 @@ public static int idlog;
                          
                           
                        CommercantMenu f1 = new CommercantMenu();
-                        this.setVisible(false);
+                       this.dispose();
                          f1.setVisible(true);
                         
                     } else {
@@ -296,9 +316,21 @@ public static int idlog;
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+      
+        this.setLocationRelativeTo(null);
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void fbbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbbuttonActionPerformed
+        // TODO add your handling code here:
+        String[] args=null;
+        Main mff = new Main();
+        mff.main(args);
+      this.dispose();
+    }//GEN-LAST:event_fbbuttonActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      *
@@ -341,6 +373,7 @@ public static int idlog;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton fbbutton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
