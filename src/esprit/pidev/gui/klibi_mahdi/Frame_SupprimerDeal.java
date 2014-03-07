@@ -11,6 +11,8 @@ import esprit.pidev.dao.adminDAO;
 import esprit.pidev.entities.administrateur;
 import esprit.pidev.shadow.AdminMenu;
 import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.gui.klibi_mahdi.DealDeleteModel;
+import esprit.pidev.gui.klibi_mahdi.Frame_UpdateDeal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

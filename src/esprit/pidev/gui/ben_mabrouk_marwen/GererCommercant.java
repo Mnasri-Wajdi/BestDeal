@@ -346,6 +346,11 @@ public class GererCommercant extends javax.swing.JFrame {
             }
         });
 
+        rech.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechActionPerformed(evt);
+            }
+        });
         rech.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 rechKeyReleased(evt);
@@ -780,6 +785,10 @@ pwd_soc.setText("");
     doLayout();
        
     }//GEN-LAST:event_rech1KeyReleased
+
+    private void rechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechActionPerformed
 
     /**
      * @param args the command line arguments

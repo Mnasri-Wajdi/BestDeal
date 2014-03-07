@@ -9,6 +9,8 @@ import esprit.pidev.entities.Deal;
 import esprit.pidev.entities.administrateur;
 import esprit.pidev.shadow.AdminMenu;
 import esprit.pidev.accueil.frame_aceuil;
+import esprit.pidev.gui.klibi_mahdi.Frame_SupprimerDeal;
+import esprit.pidev.gui.klibi_mahdi.Frame_UpdateDeal;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -79,7 +81,6 @@ public class Frame_AddDeal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setForeground(new java.awt.Color(255, 0, 0));
 
         tf_libelle.addActionListener(new java.awt.event.ActionListener() {

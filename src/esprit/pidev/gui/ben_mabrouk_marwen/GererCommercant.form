@@ -509,6 +509,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="rech">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rechActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rechKeyReleased"/>
               </Events>
             </Component>
