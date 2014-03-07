@@ -34,10 +34,9 @@ public class Deal {
    // }
     
     //les getters et les setters//
-    public int getId_deal() {
+   public int getId_deal() {
         return id_deal;
     }
-
     public void setId_deal(int id_deal) {
         this.id_deal = id_deal;
     }

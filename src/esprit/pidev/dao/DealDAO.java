@@ -90,26 +90,26 @@ public class DealDAO {
 
     public Deal findDealById(int id){
    
-     String requete = "select * from deal where id_deal=?";
-        try {
+     String requete = "SELECT * FROM deal WHERE `id_deal`="+id+"";
+     Deal d = new Deal(); 
+     CommercantDAO c = new CommercantDAO();
+     try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
         ResultSet resultat = ps.executeQuery();
-        CommercantDAO commercantDAO = new CommercantDAO();
-        Deal deal = new Deal();
         while (resultat.next()){
 
-            deal.setId_deal(resultat.getInt(1));
-            deal.setLibelle_deal(resultat.getString(2));
-            deal.setDescription(resultat.getString(3));
-            deal.setCategorie(resultat.getString(4));
-            deal.setDate_debut(resultat.getString(5));
-            deal.setDate_fin(resultat.getString(6));
-            deal.setAncien_montant(resultat.getFloat(7));
-            deal.setNouveau_montant(resultat.getFloat(8));
-            deal.setQuantite_disponible(resultat.getInt(9));
-            deal.setCommercant(commercantDAO.findCommercantById(resultat.getInt(10)));
+            d.setId_deal(resultat.getInt(1));
+            d.setLibelle_deal(resultat.getString(2));
+            d.setDescription(resultat.getString(3));
+            d.setCategorie(resultat.getString(4));
+            d.setDate_debut(resultat.getString(5));
+            d.setDate_fin(resultat.getString(6));
+            d.setAncien_montant(resultat.getFloat(7));
+            d.setNouveau_montant(resultat.getFloat(8));
+            d.setQuantite_disponible(resultat.getInt(9));
+            d.setCommercant(c.findCommercantById(resultat.getInt(10)));
         }
-        return deal;
+        return d;
         }
         catch(SQLException ex){
             System.out.println("erreur lors du chargement"+ex.getMessage());

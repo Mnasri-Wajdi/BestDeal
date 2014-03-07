@@ -4,7 +4,9 @@
  */
 package esprit.pidev.gui.tonniche_syrine;
 
+import esprit.pidev.dao.DealDAO;
 import esprit.pidev.dao.ReservationDAO;
+import esprit.pidev.entities.Deal;
 import esprit.pidev.entities.Reservation;
 import java.util.*;
 import javax.swing.table.AbstractTableModel;
@@ -36,11 +38,15 @@ public class TableModelReservation extends AbstractTableModel{
    // @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        switch (columnIndex) {
-            case 0:
+           case 0:
                 return listeReservation.get(rowIndex).getNumero_reservation();
             case 1: 
-        
-               return listeReservation.get(rowIndex).getId_deal();
+                DealDAO dao=new DealDAO();
+                Deal d = dao.findDealById(listeReservation.get(rowIndex).getId_deal());
+                
+                return d.getLibelle_deal();
+                
+                
 
                 case 2:
                 return listeReservation.get(rowIndex).getDate_reservation();

@@ -7,6 +7,7 @@ package esprit.pidev.gui.tonniche_syrine;
 import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.dao.ClientDAO;
 import esprit.pidev.dao.DealDAO;
+import esprit.pidev.dao.ReservationDAO;
 import esprit.pidev.entities.Client;
 import esprit.pidev.shadow.ClientMenu;
 import java.awt.Color;
@@ -44,7 +45,7 @@ public int k;
         logs = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        total = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -107,7 +108,7 @@ public int k;
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btm_payer, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)
@@ -135,7 +136,7 @@ public int k;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32))))
         );
 
@@ -151,6 +152,9 @@ public int k;
         tf_client_co.setText(Integer.toString(frame_aceuil.idlog));
         
         getContentPane().setBackground(Color.WHITE);
+           ReservationDAO rdao= new ReservationDAO();
+             float tot = rdao.total_reservation();
+        total.setText(""+tot);
     }//GEN-LAST:event_formWindowOpened
 
     private void table_panierMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_panierMouseMoved
@@ -222,8 +226,8 @@ public int k;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logs;
     private javax.swing.JTextField tf_client_co;
+    private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package esprit.pidev.dao;
 
 
+import esprit.pidev.accueil.frame_aceuil;
 import esprit.pidev.entities.Reservation;
 import esprit.pidev.util.MyConnection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,29 @@ public class ReservationDAO {
     //test66
     //884
     
+        public float total_reservation( ) 
+             
+     {
+        
+        String requete = "select sum(prix*quantite) from reservation where `id_client`=?";
+        try {
+           
+                   PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+                   ps.setInt(1, frame_aceuil.idlog);
+                   System.out.println("idlog"+frame_aceuil.idlog); 
+                   ResultSet result = ps.executeQuery();
+                   result.next();
+                   float sum = result.getFloat(1);
+                   
+                   
+            return sum;
+            
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement du total "+ex.getMessage());
+          return 0;
+        }
+    }
       public boolean verifier_reservation(Reservation res )
     {
         
