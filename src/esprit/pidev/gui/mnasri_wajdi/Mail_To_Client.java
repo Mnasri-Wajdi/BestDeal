@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 
 /**
  *
@@ -32,6 +33,25 @@ public class Mail_To_Client extends javax.swing.JFrame {
      * Creates new form MailJframe
      */
     public Mail_To_Client() {
+        
+        
+         try {
+            // select Look and Feel Theme 1
+            //UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+         // select Look and Feel Theme 2
+           //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                    
+            // select Look and Feel Theme 3
+           UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+          //Voici des liens utiles :
+           //http://www.jtattoo.net/ 
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        
         initComponents();
         
     }
@@ -65,8 +85,11 @@ public class Mail_To_Client extends javax.swing.JFrame {
         logs = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        logs1 = new javax.swing.JLabel();
+        logs2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -74,7 +97,7 @@ public class Mail_To_Client extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
-        jLabel1.setText("My Mail");
+        jLabel1.setText("Mon Mail");
 
         jTextMailAddressSender.setEditable(false);
         jTextMailAddressSender.addActionListener(new java.awt.event.ActionListener() {
@@ -89,18 +112,18 @@ public class Mail_To_Client extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel2.setText("Sender");
+        jLabel2.setText("Expéditeur");
 
-        jLabel3.setText("Password");
+        jLabel3.setText("Mot de passe");
 
-        jLabel4.setText("Reciever");
+        jLabel4.setText("Destinataire");
 
-        jLabel5.setText("Subject");
+        jLabel5.setText("Sujet");
 
-        jLabel6.setText("Body");
+        jLabel6.setText("Corps");
 
         jButtonSendMail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/email.png"))); // NOI18N
-        jButtonSendMail.setText("Send");
+        jButtonSendMail.setText("Envoyer");
         jButtonSendMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSendMailActionPerformed(evt);
@@ -110,13 +133,15 @@ public class Mail_To_Client extends javax.swing.JFrame {
         jLabel7.setText("Add to Mail");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/Upload.png"))); // NOI18N
-        jButton1.setText("Choose a file");
+        jButton1.setText("Choisir un fichier ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        logs.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logs.setForeground(new java.awt.Color(255, 0, 0));
         logs.setText("   ");
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/deconnexion.png"))); // NOI18N
@@ -133,6 +158,14 @@ public class Mail_To_Client extends javax.swing.JFrame {
             }
         });
 
+        logs1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logs1.setForeground(new java.awt.Color(255, 0, 0));
+        logs1.setText("   ");
+
+        logs2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logs2.setForeground(new java.awt.Color(255, 0, 0));
+        logs2.setText("   ");
+
         javax.swing.GroupLayout jTextArearObjectLayout = new javax.swing.GroupLayout(jTextArearObject);
         jTextArearObject.setLayout(jTextArearObjectLayout);
         jTextArearObjectLayout.setHorizontalGroup(
@@ -143,11 +176,17 @@ public class Mail_To_Client extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jTextArearObjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jTextArearObjectLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jTextArearObjectLayout.createSequentialGroup()
                                 .addGap(112, 112, 112)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jTextArearObjectLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jTextArearObjectLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(logs1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jTextArearObjectLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(logs2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(130, 130, 130)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, Short.MAX_VALUE))
                     .addGroup(jTextArearObjectLayout.createSequentialGroup()
@@ -191,8 +230,13 @@ public class Mail_To_Client extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE))
                     .addGroup(jTextArearObjectLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
+                        .addComponent(logs2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(logs1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)))
                 .addGap(21, 21, 21)
                 .addGroup(jTextArearObjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -399,5 +443,7 @@ public class Mail_To_Client extends javax.swing.JFrame {
     private javax.swing.JTextField jTextMailAddressSender;
     private javax.swing.JTextField jTextmailsubject;
     private javax.swing.JLabel logs;
+    private javax.swing.JLabel logs1;
+    private javax.swing.JLabel logs2;
     // End of variables declaration//GEN-END:variables
 }

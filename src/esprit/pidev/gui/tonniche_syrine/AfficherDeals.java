@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -31,6 +32,24 @@ public class AfficherDeals extends javax.swing.JFrame {
      * Creates new form Add_deal
      */
     public AfficherDeals() {
+        
+         try {
+            // select Look and Feel Theme 1
+            //UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+         // select Look and Feel Theme 2
+           //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                    
+            // select Look and Feel Theme 3
+           UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+          //Voici des liens utiles :
+           //http://www.jtattoo.net/ 
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        
         initComponents();
     }
 
@@ -55,6 +74,7 @@ public class AfficherDeals extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 204));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -82,6 +102,9 @@ public class AfficherDeals extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        logs.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logs.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel2.setText("Liste deals");
 
@@ -111,8 +134,8 @@ public class AfficherDeals extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(75, 75, 75)
@@ -137,12 +160,12 @@ public class AfficherDeals extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_client_co, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -221,7 +244,7 @@ public class AfficherDeals extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         ClientDAO cldao = new ClientDAO();
         Client c=cldao.findClientById(frame_aceuil.idlog);
-        logs.setText("Bienvenue "+c.getNom());
+        logs.setText("Bienvenue client(e) "+c.getNom());
         tf_client_co.setText(Integer.toString(frame_aceuil.idlog));
         
  

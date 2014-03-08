@@ -6,6 +6,7 @@ package esprit.pidev.gui.chalgoumi_marwen;
 
 import esprit.pidev.dao.CommercantDAO;
 import esprit.pidev.entities.Commercant;
+import javax.swing.UIManager;
 
 
 /**
@@ -18,6 +19,25 @@ public class frame_commerçant extends javax.swing.JFrame {
      * Creates new form frame_commerçant
      */
     public frame_commerçant() {
+        
+         try {
+            // select Look and Feel Theme 1
+            //UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+         // select Look and Feel Theme 2
+           //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                    
+            // select Look and Feel Theme 3
+           UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+          //Voici des liens utiles :
+           //http://www.jtattoo.net/ 
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
         initComponents();
     }
 

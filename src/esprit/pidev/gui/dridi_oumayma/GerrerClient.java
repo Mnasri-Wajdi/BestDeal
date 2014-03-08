@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.TableColumn;
 
 /**
@@ -27,6 +28,25 @@ public class GerrerClient extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public GerrerClient() {
+        
+         try {
+            // select Look and Feel Theme 1
+            //UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+         // select Look and Feel Theme 2
+           //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                    
+            // select Look and Feel Theme 3
+           UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+          //Voici des liens utiles :
+           //http://www.jtattoo.net/ 
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
         initComponents();
     }
 

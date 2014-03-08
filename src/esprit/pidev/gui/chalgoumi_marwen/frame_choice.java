@@ -5,6 +5,7 @@
 package esprit.pidev.gui.chalgoumi_marwen;
 
 import esprit.pidev.gui.chalgoumi_marwen.frame_commerçant;
+import javax.swing.UIManager;
 
 /**
  *
@@ -16,6 +17,25 @@ public class frame_choice extends javax.swing.JFrame {
      * Creates new form frame_choice
      */
     public frame_choice() {
+        
+         try {
+            // select Look and Feel Theme 1
+            //UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+         // select Look and Feel Theme 2
+           //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                    
+            // select Look and Feel Theme 3
+           UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+          //Voici des liens utiles :
+           //http://www.jtattoo.net/ 
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
         initComponents();
     }
 
