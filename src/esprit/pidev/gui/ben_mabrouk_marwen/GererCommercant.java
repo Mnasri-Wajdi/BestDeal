@@ -82,12 +82,12 @@ public class GererCommercant extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         desc_soc = new javax.swing.JTextArea();
-        btn_add_commercant = new javax.swing.JButton();
         lab_desc = new javax.swing.JLabel();
         pwd_label = new javax.swing.JLabel();
         log_label = new javax.swing.JLabel();
         email_label = new javax.swing.JLabel();
         nom_soc = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -100,9 +100,9 @@ public class GererCommercant extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        btn_supprimer = new javax.swing.JButton();
         rech1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -134,7 +134,7 @@ public class GererCommercant extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("PieChart", jPanel1);
@@ -203,15 +203,6 @@ public class GererCommercant extends javax.swing.JFrame {
         desc_soc.setRows(5);
         jScrollPane1.setViewportView(desc_soc);
 
-        btn_add_commercant.setBackground(java.awt.Color.red);
-        btn_add_commercant.setForeground(new java.awt.Color(255, 255, 255));
-        btn_add_commercant.setText("Ajouter");
-        btn_add_commercant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_add_commercantActionPerformed(evt);
-            }
-        });
-
         lab_desc.setForeground(new java.awt.Color(255, 0, 0));
 
         pwd_label.setForeground(new java.awt.Color(255, 0, 0));
@@ -226,14 +217,27 @@ public class GererCommercant extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/valider.png"))); // NOI18N
+        jButton5.setText("Ajouter");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(nom_soc, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(nom_soc, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jButton5)))
+                .addContainerGap(365, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(31, 31, 31)
@@ -282,9 +286,6 @@ public class GererCommercant extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(24, 24, 24)
                             .addComponent(lab_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGap(289, 289, 289)
-                            .addComponent(btn_add_commercant))
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(32, Short.MAX_VALUE)))
         );
@@ -293,7 +294,9 @@ public class GererCommercant extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(nom_soc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(20, 20, 20))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
@@ -331,9 +334,7 @@ public class GererCommercant extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lab_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(64, 64, 64)
-                    .addComponent(btn_add_commercant)
-                    .addContainerGap(37, Short.MAX_VALUE)))
+                    .addContainerGap(138, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Ajouter Commerçant", jPanel4);
@@ -417,13 +418,13 @@ public class GererCommercant extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rech, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addGap(23, 23, 23))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(107, 107, 107)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                     .addGap(108, 108, 108)))
         );
 
@@ -443,15 +444,6 @@ public class GererCommercant extends javax.swing.JFrame {
         jTable2.setModel(new CommercantDeleteModel());
         jScrollPane3.setViewportView(jTable2);
 
-        btn_supprimer.setBackground(new java.awt.Color(255, 0, 0));
-        btn_supprimer.setForeground(new java.awt.Color(255, 255, 255));
-        btn_supprimer.setText("Supprimer");
-        btn_supprimer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_supprimerActionPerformed(evt);
-            }
-        });
-
         rech1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 rech1KeyReleased(evt);
@@ -460,25 +452,30 @@ public class GererCommercant extends javax.swing.JFrame {
 
         jLabel12.setText("Rechercher par nom:");
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/supp.png"))); // NOI18N
+        jButton6.setText("Supprimer");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(266, 266, 266)
-                        .addComponent(btn_supprimer))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(355, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rech1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton6)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(355, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
@@ -494,13 +491,13 @@ public class GererCommercant extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rech1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
-                .addComponent(btn_supprimer)
-                .addGap(61, 61, 61))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(22, 22, 22))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(107, 107, 107)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                     .addGap(108, 108, 108)))
         );
 
@@ -568,25 +565,6 @@ logs.setText("Admin "+a.getNom_admin());
    
    // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
-
-    private void btn_supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_supprimerActionPerformed
-       if(jTable2.getSelectedRow()!=-1){
-
-        int resultat=JOptionPane.showConfirmDialog(null,"Êtes-vous sûr de vouloir supprimer ce commercant?", "Supression", JOptionPane.YES_NO_OPTION);
-        // TODO add your handling code here:
-        if (resultat==JOptionPane.YES_OPTION) {
-            CommercantDAO cdao = new CommercantDAO();
-            cdao.deleteCommercant((int) jTable2.getValueAt(jTable2.getSelectedRow(),0));
-            jTable2.setModel(new CommercantDeleteModel());
-        }
-           
-        }
-       else 
-       {
-           JOptionPane.showMessageDialog(this, "Veuillez séléctionner un commerçant","Erreur" ,JOptionPane.ERROR_MESSAGE);
-       }
-
-    }//GEN-LAST:event_btn_supprimerActionPerformed
 
     private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
         // TODO add your handling code here:
@@ -660,77 +638,6 @@ logs.setText("Admin "+a.getNom_admin());
     private void log_socActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_socActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_log_socActionPerformed
-
-    private void btn_add_commercantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_commercantActionPerformed
-        // TODO add your handling code here:
-
-        if (nom_soc.getText().isEmpty()) {
-            nom_label.setText("Champ vide");
-
-        }
-        else
-        nom_label.setText("");
-        if (adr_soc.getText().isEmpty()) {
-            adr_label1.setText("Champ vide");
-        }
-        else
-        adr_label1.setText("");
-
-        if (tel_soc.getText().isEmpty()) {
-            tel_label.setText("Champ vide");
-        }
-        else if (tel_soc.getText().length()!=8) {
-            tel_label.setText("Numero non valide");
-        }
-        else{
-            tel_label.setText("");
-            try{
-                int tel = Integer.parseInt(tel_soc.getText());
-            }catch(Exception e){
-                tel_label.setText("Only a Number");
-            }
-        }
-        if (desc_soc.getText().isEmpty()) {
-            lab_desc.setText("Champ vide");
-        }
-        else
-        lab_desc.setText("");
-        if (email_soc.getText().isEmpty()) {
-            email_label.setText("Champ vide");
-        }
-        else if (isEmailAdress(email_soc.getText())) {
-            email_label.setText("");
-        }
-        else
-        email_label.setText("Email non valide");
-
-        if (log_soc.getText().isEmpty()) {
-            log_label.setText("Champ vide");
-        }
-        else
-        log_label.setText("");
-        if (pwd_soc.getText().isEmpty()) {
-            pwd_label.setText("Champ vide");
-        }
-        else
-        pwd_label.setText("");
-
-        if ((pwd_label.getText()=="")&&(log_label.getText()=="")&&(email_label.getText()=="")&&(tel_label.getText()=="")&& (adr_label1.getText()=="")&&(nom_label.getText()=="")&&(lab_desc.getText()=="" )) {
-
-            Commercant c1 = new Commercant();
-            CommercantDAO commercant_dao = new CommercantDAO();
-            c1.setNom_commercant(nom_soc.getText());
-            c1.setDescription(desc_soc.getText());
-            c1.setAdresse(adr_soc.getText());
-            c1.setEmail(email_soc.getText());
-            c1.setTel(Integer.parseInt(tel_soc.getText()));
-            c1.setLogin(log_soc.getText());
-            c1.setPassword(pwd_soc.getText());
-            commercant_dao.InsertCommercant(c1);
-            JOptionPane.showMessageDialog(this, "Ajout effectué avec succès");
-
-        }
-    }//GEN-LAST:event_btn_add_commercantActionPerformed
 
     private void tel_socActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel_socActionPerformed
         // TODO add your handling code here:
@@ -850,6 +757,95 @@ pwd_soc.setText("");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+  if (nom_soc.getText().isEmpty()) {
+            nom_label.setText("Champ vide");
+
+        }
+        else
+        nom_label.setText("");
+        if (adr_soc.getText().isEmpty()) {
+            adr_label1.setText("Champ vide");
+        }
+        else
+        adr_label1.setText("");
+
+        if (tel_soc.getText().isEmpty()) {
+            tel_label.setText("Champ vide");
+        }
+        else if (tel_soc.getText().length()!=8) {
+            tel_label.setText("Numero non valide");
+        }
+        else{
+            tel_label.setText("");
+            try{
+                int tel = Integer.parseInt(tel_soc.getText());
+            }catch(Exception e){
+                tel_label.setText("Only a Number");
+            }
+        }
+        if (desc_soc.getText().isEmpty()) {
+            lab_desc.setText("Champ vide");
+        }
+        else
+        lab_desc.setText("");
+        if (email_soc.getText().isEmpty()) {
+            email_label.setText("Champ vide");
+        }
+        else if (isEmailAdress(email_soc.getText())) {
+            email_label.setText("");
+        }
+        else
+        email_label.setText("Email non valide");
+
+        if (log_soc.getText().isEmpty()) {
+            log_label.setText("Champ vide");
+        }
+        else
+        log_label.setText("");
+        if (pwd_soc.getText().isEmpty()) {
+            pwd_label.setText("Champ vide");
+        }
+        else
+        pwd_label.setText("");
+
+        if ((pwd_label.getText()=="")&&(log_label.getText()=="")&&(email_label.getText()=="")&&(tel_label.getText()=="")&& (adr_label1.getText()=="")&&(nom_label.getText()=="")&&(lab_desc.getText()=="" )) {
+
+            Commercant c1 = new Commercant();
+            CommercantDAO commercant_dao = new CommercantDAO();
+            c1.setNom_commercant(nom_soc.getText());
+            c1.setDescription(desc_soc.getText());
+            c1.setAdresse(adr_soc.getText());
+            c1.setEmail(email_soc.getText());
+            c1.setTel(Integer.parseInt(tel_soc.getText()));
+            c1.setLogin(log_soc.getText());
+            c1.setPassword(pwd_soc.getText());
+            commercant_dao.InsertCommercant(c1);
+            JOptionPane.showMessageDialog(this, "Ajout effectué avec succès");
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+               if(jTable2.getSelectedRow()!=-1){
+
+        int resultat=JOptionPane.showConfirmDialog(null,"Êtes-vous sûr de vouloir supprimer ce commercant?", "Supression", JOptionPane.YES_NO_OPTION);
+        // TODO add your handling code here:
+        if (resultat==JOptionPane.YES_OPTION) {
+            CommercantDAO cdao = new CommercantDAO();
+            cdao.deleteCommercant((int) jTable2.getValueAt(jTable2.getSelectedRow(),0));
+            jTable2.setModel(new CommercantDeleteModel());
+        }
+           
+        }
+       else 
+       {
+           JOptionPane.showMessageDialog(this, "Veuillez séléctionner un commerçant","Erreur" ,JOptionPane.ERROR_MESSAGE);
+       }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -887,8 +883,6 @@ pwd_soc.setText("");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adr_label1;
     private javax.swing.JTextField adr_soc;
-    private javax.swing.JButton btn_add_commercant;
-    private javax.swing.JButton btn_supprimer;
     private javax.swing.JTextArea desc_soc;
     private javax.swing.JLabel email_label;
     private javax.swing.JTextField email_soc;
@@ -896,6 +890,8 @@ pwd_soc.setText("");
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
