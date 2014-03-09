@@ -271,7 +271,9 @@ public class Frame_AddDeal extends javax.swing.JFrame {
    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-      CommercantDAO cdao = new CommercantDAO();
+         this.setLocationRelativeTo(null);
+
+        CommercantDAO cdao = new CommercantDAO();
    Commercant c=cdao.findCommercantById(frame_aceuil.idlog);
 logs.setText("Bienvenue "+c.getNom_commercant());
     

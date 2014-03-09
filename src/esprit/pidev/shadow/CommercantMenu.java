@@ -60,6 +60,7 @@ public class CommercantMenu extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -125,6 +126,7 @@ public class CommercantMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+         this.setLocationRelativeTo(null);
        
         CommercantDAO cdao = new CommercantDAO();
    Commercant c=cdao.findCommercantById(frame_aceuil.idlog);

@@ -40,7 +40,7 @@ public class PieJPanel extends javax.swing.JPanel {
         dataset.setValue(c.getNom_commercant(),new Double(c.getNote()) );
         
          }
-         graphe = ChartFactory.createPieChart("Statistique par note", dataset,true ,true ,false);
+         graphe = ChartFactory.createPieChart("Statistique commerçant par note", dataset,true ,true ,false);
         cp = new ChartPanel(graphe);
         this.add(cp);
     }
