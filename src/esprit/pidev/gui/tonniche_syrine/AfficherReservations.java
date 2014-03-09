@@ -219,6 +219,7 @@ public int k;
 
             JOptionPane.showMessageDialog(this, "Payement effectué avec succès");
             this.dispose();
+            new ClientMenu().setVisible(true);
         }
         else
         JOptionPane.showMessageDialog(this, "Payement Impposible la liste de réservations est vide ");

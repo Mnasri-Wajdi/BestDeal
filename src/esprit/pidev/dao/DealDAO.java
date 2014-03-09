@@ -475,7 +475,7 @@ public List<Notification> DisplayAllNot(int id) {
                
                             try {
                                    PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete9);
-                                   ps.setString(1,"Un nouveau deal "+d.getLibelle_deal()+" de catégorie "+d.getCategorie()+" avec un prix de "+d.getNouveau_montant()+" est Ajouté" );
+                                   ps.setString(1,"Un nouveau deal "+d.getLibelle_deal()+" de catégorie "+d.getCategorie()+" avec un prix de "+d.getNouveau_montant()+" (TND) est Ajouté" );
                                    ps.setString(2,new Date().toString());
                                    ps.setInt(3,resultat.getInt(1));
                                    ps.setInt(4,0);

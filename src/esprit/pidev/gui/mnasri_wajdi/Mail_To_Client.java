@@ -66,7 +66,6 @@ public class Mail_To_Client extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextArearObject = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jTextMailAddressSender = new javax.swing.JTextField();
         jTextMailAddressReceiver = new javax.swing.JTextField();
         jPassworSender = new javax.swing.JPasswordField();
@@ -95,9 +94,6 @@ public class Mail_To_Client extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
-        jLabel1.setText("Mon Mail");
 
         jTextMailAddressSender.setEditable(false);
         jTextMailAddressSender.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +147,7 @@ public class Mail_To_Client extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/home.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/back.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -176,9 +172,6 @@ public class Mail_To_Client extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jTextArearObjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jTextArearObjectLayout.createSequentialGroup()
-                                .addGap(112, 112, 112)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jTextArearObjectLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(logs, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jTextArearObjectLayout.createSequentialGroup()
@@ -187,7 +180,7 @@ public class Mail_To_Client extends javax.swing.JFrame {
                             .addGroup(jTextArearObjectLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(logs2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(130, 130, 130)
+                        .addGap(154, 154, 154)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, Short.MAX_VALUE))
                     .addGroup(jTextArearObjectLayout.createSequentialGroup()
                         .addContainerGap()
@@ -235,10 +228,8 @@ public class Mail_To_Client extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(logs2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(logs1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)))
-                .addGap(21, 21, 21)
+                        .addComponent(logs1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(78, 78, 78)
                 .addGroup(jTextArearObjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextMailAddressSender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -427,7 +418,6 @@ public class Mail_To_Client extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonSendMail;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

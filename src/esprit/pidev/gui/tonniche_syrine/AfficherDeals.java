@@ -227,7 +227,7 @@ public class AfficherDeals extends javax.swing.JFrame {
     deal_do.DisplayNotifDeal(frame_aceuil.idlog);
     
     
-         JOptionPane.showMessageDialog(this, "Ajout effectué avec succès");
+       //  JOptionPane.showMessageDialog(this, "Ajout effectué avec succès");
         }
         else
         JOptionPane.showMessageDialog(this, "Deal déja épuisé");
