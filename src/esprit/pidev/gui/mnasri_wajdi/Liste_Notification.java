@@ -175,7 +175,7 @@ public static  int n;
         
         ClientDAO cldao = new ClientDAO();
    Client c=cldao.findClientById(frame_aceuil.idlog);
-    logs.setText("Bienvenue client(e) "+c.getNom());
+    logs.setText("Bienvenue client(e) "+c.getPrenom());
         tf_idClient.setText(Integer.toString(frame_aceuil.idlog));
        
     }//GEN-LAST:event_formWindowOpened

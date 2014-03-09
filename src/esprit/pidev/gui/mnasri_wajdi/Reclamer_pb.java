@@ -209,7 +209,7 @@ public class Reclamer_pb extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         ClientDAO cldao = new ClientDAO();
    Client c=cldao.findClientById(frame_aceuil.idlog);
-    logs.setText("Bienvenue client(e) "+c.getNom());
+    logs.setText("Bienvenue client(e) "+c.getPrenom());
         l_client.setText(Integer.toString(c.getId_client()));
         
         

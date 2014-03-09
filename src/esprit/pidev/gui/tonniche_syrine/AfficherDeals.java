@@ -244,7 +244,7 @@ public class AfficherDeals extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         ClientDAO cldao = new ClientDAO();
         Client c=cldao.findClientById(frame_aceuil.idlog);
-        logs.setText("Bienvenue client(e) "+c.getNom());
+        logs.setText("Bienvenue client(e) "+c.getPrenom());
         tf_client_co.setText(Integer.toString(frame_aceuil.idlog));
         
  

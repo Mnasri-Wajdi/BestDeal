@@ -340,7 +340,7 @@ public class Noter_commercant extends javax.swing.JFrame {
         
         ClientDAO cldao = new ClientDAO();
    Client c=cldao.findClientById(frame_aceuil.idlog);
-    logs.setText("Bienvenue client(e) "+c.getNom());
+    logs.setText("Bienvenue client(e) "+c.getPrenom());
         tf__client.setText(Integer.toString(c.getId_client()));
         
         
