@@ -86,7 +86,6 @@ public static int idlog;
         jLabel4 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         rb_commercant = new javax.swing.JRadioButton();
         rb_client = new javax.swing.JRadioButton();
@@ -128,6 +127,7 @@ public static int idlog;
         jPasswordField2.setBounds(185, 315, 122, 20);
 
         jLabel6.setForeground(new java.awt.Color(102, 51, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/bouton-inscrire.png"))); // NOI18N
         jLabel6.setText("s'engistrer ");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,11 +135,7 @@ public static int idlog;
             }
         });
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(279, 427, 87, 24);
-
-        jLabel5.setText("SI vous n'etes pas inscrit vous pouvez s'inscrire ici,");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(30, 432, 243, 14);
+        jLabel6.setBounds(220, 434, 110, 20);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esprit/pidev/image/connecter_btn.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -357,7 +353,6 @@ public static int idlog;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField2;
